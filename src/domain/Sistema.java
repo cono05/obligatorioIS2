@@ -383,4 +383,9 @@ public class Sistema extends Observable implements Serializable {
         }
         return estado;
     }
+    
+    public boolean existenUsuariosRegistrados(){
+        boolean retorno = !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();
+        return retorno;
+    }
 }

@@ -1341,4 +1341,29 @@ public class SistemaTest {
         assertTrue(resultadoObtenido);
 
     }
+    
+    @Test
+    public void testExistenUsuariosRegistradosTrue(){
+        Sistema unSistema = new Sistema();
+        Usuario unUsuario = new Usuario();
+        unUsuario.setNombres("Juan");
+        unUsuario.setApellidos("Lopez");
+        unSistema.agregarUsuario(unUsuario);
+        assertTrue(unSistema.existenUsuariosRegistrados());
+    }
+    
+    @Test
+    public void testExistenUsuariosRegistradosTrue2(){
+        Sistema unSistema = new Sistema();
+        Profesional unProfesional = new Profesional();
+        unSistema.agregarProfesional(unProfesional);
+        assertTrue(unSistema.existenUsuariosRegistrados());
+    }
+    
+    @Test
+    public void testExistenUsuariosRegistradosFalse(){
+        Sistema unSistema = new Sistema();
+        assertFalse(unSistema.existenUsuariosRegistrados());
+    }
+    
 }
