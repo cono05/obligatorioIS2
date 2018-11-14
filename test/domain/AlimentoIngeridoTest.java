@@ -12,12 +12,11 @@ import java.util.ArrayList;
 
 public class AlimentoIngeridoTest {
 
-    private Sistema unSistema;
+   
 //falta caso string con numero
 
     @Before
     public void setUp() {
-        unSistema = new Sistema();
         Alimento unAlimento = new Alimento();
         unAlimento.setNombre("Banana");
         int nutrientes[] = new int[5];

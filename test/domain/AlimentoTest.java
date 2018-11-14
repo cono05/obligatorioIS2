@@ -20,40 +20,33 @@ public class AlimentoTest {
 
     @Test
     public void testRegistrarAlimentoNombreVacio() {
-        int tamanoInicial = unSistema.getListaAlimentos().size();
-        int resultadoEsperado = tamanoInicial;
         String nombre = "";
         String tipo = "Fruta";
         int[] nutrientesPrincipales = new int[5];
         unSistema.registrarAlimento(nombre, tipo, nutrientesPrincipales);
         int resutladoObtenido = unSistema.getListaAlimentos().size();
-        assertEquals(resultadoEsperado, resutladoObtenido);
-
+        assertEquals(0, resutladoObtenido);
     }
 
     @Test
     public void testRegistrarAlimentoApellidoVacio() {
-        int tamanoInicial = unSistema.getListaAlimentos().size();
-        int resultadoEsperado = tamanoInicial;
         String nombre = "Manzana";
         String tipo = "";
         int[] nutrientesPrincipales = new int[5];
         unSistema.registrarAlimento(nombre, tipo, nutrientesPrincipales);
         int resutladoObtenido = unSistema.getListaAlimentos().size();
-        assertEquals(resultadoEsperado, resutladoObtenido);
+        assertEquals(0, resutladoObtenido);
 
     }
 
     @Test
     public void testRegistrarAlimentoCorrecto() {
-        int tamanoInicial = unSistema.getListaAlimentos().size();
-        int resultadoEsperado = tamanoInicial + 1;
         String nombre = "Manzana";
         String tipo = "Fruta";
         int[] nutrientesPrincipales = new int[5];
         unSistema.registrarAlimento(nombre, tipo, nutrientesPrincipales);
         int resutladoObtenido = unSistema.getListaAlimentos().size();
-        assertEquals(resultadoEsperado, resutladoObtenido);
+        assertEquals(1, resutladoObtenido);
 
     }
 

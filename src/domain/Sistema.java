@@ -297,12 +297,14 @@ public class Sistema extends Observable implements Serializable {
 
     //FUNCIONES PARA VALIDAR CAMPOS
     public boolean validarCampoTxtNoEsVacio(String campo) {
-        boolean esCampoValido = false;
-
-        if (!campo.equals("")) {
-            esCampoValido = true;
-        }
-        return esCampoValido;
+       // boolean esCampoValido = false;
+       
+        if (campo.trim().length() == 0) {
+            //esCampoValido = false;
+            return false;
+        }else
+            return true;
+       // return false;//esCampoValido;
     }
 
     public boolean validarStringSinNumero(String s) {

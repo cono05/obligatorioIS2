@@ -16,7 +16,7 @@ public class AlimentoIngerido {
     }
 
     public Date getFecha() {
-        return fecha;
+        return this.fecha;
     }
 
     public void setFecha(Date fecha) {

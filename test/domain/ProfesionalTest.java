@@ -104,7 +104,7 @@ public class ProfesionalTest {
         String apellido = "Fuseneco";
         unProfesional.setNombres(nombre);
         unProfesional.setApellidos(apellido);
-        String resultadoEsperado = nombre+apellido;
+        String resultadoEsperado = "María Elena Fuseneco";
         assertEquals(resultadoEsperado, unProfesional.toString());
     }
 

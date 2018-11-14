@@ -350,7 +350,7 @@ public class SistemaTest {
         String nombres = "Juan";
         String apellidos = "Leivas";
         String titulo = "Lic. en Nutrición";
-        String paisObtencionTitulo = " ";
+        String paisObtencionTitulo = "";
         Date fechaNacimiento;
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 1981);
@@ -1331,12 +1331,11 @@ public class SistemaTest {
         unPlan.setMerienda(desayuno);
         unPlan.setCena(desayuno);
         unPlan.setUsuario(unUsuario);
-        unPlan.setEstado(false);
-        ArrayList<PlanAlimentacion> lista = new ArrayList<PlanAlimentacion>();
+        unPlan.setEstado(true);
+        ArrayList<PlanAlimentacion> lista = new ArrayList<>();
         lista.add(unPlan);
         unProfesional.setListaSolicitudesDePlanes(lista);
         unSistema.agregarSolicitud(unProfesional, unPlan);
-
         boolean resultadoObtenido = unSistema.obtenerEstadoPlanAlimentacionDadoNombreUsuario(nombreCompleto);
         assertTrue(resultadoObtenido);
 
