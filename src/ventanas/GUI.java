@@ -46,6 +46,9 @@ public class GUI extends javax.swing.JFrame {
 
         CardLayout cl = (CardLayout) panelLateral.getLayout();
         cl.show(panelLateral, "panelBotonesInicio");
+        if(!sistema.existenUsuariosRegistrados()){
+            pBYaEstoyReg.setVisible(false);
+        }
 
     }
 
@@ -3557,6 +3560,7 @@ public class GUI extends javax.swing.JFrame {
 
             if (registroExitoso) {
                 lbCheckRegistroUsuarioExitoso.setVisible(true);
+                pBYaEstoyReg.setVisible(true);
                 limpiarFormUsuario();
             } else {
                 lbCheckRegistroUsuarioRepetido.setVisible(true);
@@ -3723,7 +3727,7 @@ public class GUI extends javax.swing.JFrame {
             Icon avatar = lbAvatarProf.getIcon();
 
             sistema.registrarProfesional(nombres, apellidos, titulo, paisObtencionTitulo, fechaNacimiento, fechaGraduacion, avatar);
-
+            pBYaEstoyReg.setVisible(true);
             limpiarFormProfesional();
         }
     }//GEN-LAST:event_btnRegistrarProfesionalActionPerformed
