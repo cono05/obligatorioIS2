@@ -3,6 +3,7 @@ package ventanas;
 import com.toedter.calendar.JDateChooser;
 import domain.Consulta;
 import domain.Enums;
+import domain.EstadoSanitario;
 import domain.ParProfesionalConsulta;
 import domain.PlanAlimentacion;
 import domain.Profesional;
@@ -830,6 +831,7 @@ public class GUI extends javax.swing.JFrame {
         lbAvatarInicSecUsuario = new javax.swing.JLabel();
         lbMostrarNombreUsuario = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         panelBotonesInicial = new javax.swing.JPanel();
         pBRegProfesional = new javax.swing.JPanel();
         lbRegProf = new javax.swing.JLabel();
@@ -1033,6 +1035,10 @@ public class GUI extends javax.swing.JFrame {
         lbHorasActFisicaPlanAlimentacionError = new javax.swing.JLabel();
         lbPesoPlanAlimentacionError = new javax.swing.JLabel();
         lbAlturaPlanAlimentacionError = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        txtBoxIMC = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
         PPlanAlimentacionProfesional = new javax.swing.JPanel();
         lbPlanAlimentacionUsuario1 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -1454,6 +1460,21 @@ public class GUI extends javax.swing.JFrame {
         jLabel8.getAccessibleContext().setAccessibleName("panelinicio");
 
         panelBotonesUsuario.add(pBVolverInicioUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 190, 160));
+
+        jPanel1.setPreferredSize(new java.awt.Dimension(273, 40));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 270, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        panelBotonesUsuario.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 270, -1));
 
         panelLateral.add(panelBotonesUsuario, "panelBotonesUsuario");
 
@@ -2853,6 +2874,32 @@ public class GUI extends javax.swing.JFrame {
         lbAlturaPlanAlimentacionError.setForeground(new java.awt.Color(255, 0, 0));
         lbAlturaPlanAlimentacionError.setText("<html>*La altura debe estar <br> entre 0 y 250 cm kg</html>");
         PSolicitarPlanAlimentacionUsuario.add(lbAlturaPlanAlimentacionError, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 250, -1, 40));
+
+        jButton1.setText("Calcular IMC actual");
+        jButton1.setName("jBtnCaluclarIMC"); // NOI18N
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        PSolicitarPlanAlimentacionUsuario.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, 30));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("IMC Actual");
+        PSolicitarPlanAlimentacionUsuario.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
+
+        txtBoxIMC.setName("txtBoxIMC"); // NOI18N
+        txtBoxIMC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBoxIMCActionPerformed(evt);
+            }
+        });
+        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 60, 30));
+
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("<html>*Su peso, altura e IMC <br> han sido registrados en su historial</html>");
+        PSolicitarPlanAlimentacionUsuario.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 180, 40));
 
         panelContenido.add(PSolicitarPlanAlimentacionUsuario, "panelPlanAlimentacion");
 
@@ -4984,6 +5031,22 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boxRolInicSecActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        double peso = Integer.parseInt(txtPesoSolicitud.getText());
+        double altura = Integer.parseInt(txtAlturaSolicitud.getText());
+        double metros = altura/100;
+        double metros2 = metros*metros;
+        int imc = (int) (peso/metros2);
+        String cadena = String.valueOf(imc);
+        txtBoxIMC.setText(cadena);
+        EstadoSanitario estado = new EstadoSanitario(peso, altura, imc, new Date());
+        usuario.agregarEstadoSanitario(estado);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtBoxIMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoxIMCActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtBoxIMCActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5079,8 +5142,11 @@ public class GUI extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser dcGraduacionProf;
     private com.toedter.calendar.JDateChooser dcNacimientoProf;
     private com.toedter.calendar.JDateChooser dcNacimientoUsuario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -5089,6 +5155,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
@@ -5318,6 +5385,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAmpilarInfoRestriccionesPlanAlimProf;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtApellidoProf;
+    private javax.swing.JTextField txtBoxIMC;
     private javax.swing.JTextArea txtDescripcionConsultaProf;
     private javax.swing.JTextArea txtDescripcionUsuario;
     private javax.swing.JTextArea txtDescripcionUsuarioConsultaRecibidaProf;

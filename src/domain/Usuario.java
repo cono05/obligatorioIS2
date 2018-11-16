@@ -13,8 +13,16 @@ public class Usuario extends Persona {
     //salado dulce lacteos carnes rojas otros
     private boolean[] restricciones = new boolean[5];
     private ArrayList<AlimentoIngerido> alimentosIngeridos = new ArrayList<AlimentoIngerido>();
-
     private PlanAlimentacion planDeAlimentacion;
+    private ArrayList<EstadoSanitario> historialEstadoSanitario;
+    
+    public Usuario(){
+        this.historialEstadoSanitario = new ArrayList<>();
+    }
+    
+    public void agregarEstadoSanitario(EstadoSanitario estadoSanitario){
+        this.historialEstadoSanitario.add(estadoSanitario);
+    }
 
     public Icon getAvatar() {
         return avatar;

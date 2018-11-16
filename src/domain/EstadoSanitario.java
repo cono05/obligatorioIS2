@@ -5,19 +5,23 @@
  */
 package domain;
 
+import java.util.Date;
+
 /**
  *
  * @author cono_
  */
 public class EstadoSanitario {
-    private int peso;
-    private int altura;
-    private float imc;
+    private double peso;
+    private double altura;
+    private double imc;
+    private Date fecha;
     
-    public EstadoSanitario(int peso, int altura, float imc){
+    public EstadoSanitario(double peso, double altura, double imc, Date fecha){
         this.peso = peso;
         this.altura = altura;
         this.imc = imc;
+        this.fecha = fecha;
     }
     
     @Override
