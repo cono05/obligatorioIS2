@@ -80,6 +80,10 @@ public class Usuario extends Persona {
         this.descripcion = descripcion;
     }
 
+    public ArrayList<EstadoSanitario> getHistorialIMC(){
+        return this.historialEstadoSanitario;
+    }
+    
     @Override
     public String toString() {
         return this.getNombres() + " " + this.getApellidos();

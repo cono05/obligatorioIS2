@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -485,7 +486,19 @@ public class GUI extends javax.swing.JFrame {
         }
         return esFormValido;
     }
-
+    
+    public boolean validarDatosIMC(){
+        boolean retorno = false;
+        String peso = txtPesoSolicitud.getText();
+        String altura = txtAlturaSolicitud.getText();
+        
+        if (validarCampoTxtNoEsVacio(altura) && validarCampoTxtNoEsVacio(peso)) {
+            if (validarAltura(Integer.parseInt(altura)) && validarPeso(Integer.parseInt(peso))) {
+                retorno = true;
+            }
+        }
+        return retorno;
+    }
     public void limpiarVentanas() {
         limpiarVentanaPricipal();
         limpiarVentanaUsuario();
@@ -1036,9 +1049,11 @@ public class GUI extends javax.swing.JFrame {
         lbPesoPlanAlimentacionError = new javax.swing.JLabel();
         lbAlturaPlanAlimentacionError = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
         txtBoxIMC = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelRegistroIMC = new javax.swing.JLabel();
+        jScrollPane24 = new javax.swing.JScrollPane();
+        jListHistorialIMC = new javax.swing.JList<>();
+        jLabel11 = new javax.swing.JLabel();
         PPlanAlimentacionProfesional = new javax.swing.JPanel();
         lbPlanAlimentacionUsuario1 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
@@ -2882,12 +2897,7 @@ public class GUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PSolicitarPlanAlimentacionUsuario.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 210, -1, 30));
-
-        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("IMC Actual");
-        PSolicitarPlanAlimentacionUsuario.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 190, -1, -1));
+        PSolicitarPlanAlimentacionUsuario.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, -1, 30));
 
         txtBoxIMC.setName("txtBoxIMC"); // NOI18N
         txtBoxIMC.addActionListener(new java.awt.event.ActionListener() {
@@ -2895,11 +2905,20 @@ public class GUI extends javax.swing.JFrame {
                 txtBoxIMCActionPerformed(evt);
             }
         });
-        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 210, 60, 30));
+        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 60, 30));
 
-        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel12.setText("<html>*Su peso, altura e IMC <br> han sido registrados en su historial</html>");
-        PSolicitarPlanAlimentacionUsuario.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 180, 40));
+        jLabelRegistroIMC.setForeground(new java.awt.Color(255, 0, 0));
+        jLabelRegistroIMC.setText("<html>*Su peso, altura e IMC <br> han sido registrados en su historial</html>");
+        PSolicitarPlanAlimentacionUsuario.add(jLabelRegistroIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 180, 40));
+        jLabelRegistroIMC.setVisible(false);
+
+        jScrollPane24.setViewportView(jListHistorialIMC);
+
+        PSolicitarPlanAlimentacionUsuario.add(jScrollPane24, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 200, 230));
+
+        jLabel11.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel11.setText("Historial IMC:");
+        PSolicitarPlanAlimentacionUsuario.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, -1, -1));
 
         panelContenido.add(PSolicitarPlanAlimentacionUsuario, "panelPlanAlimentacion");
 
@@ -3643,6 +3662,15 @@ public class GUI extends javax.swing.JFrame {
             boxAlimentoConsumidoUsuario.addItem(sistema.getListaAlimentos().get(i) + "");
         }
     }
+    
+    public void cargarJListHistorialIMC(){
+        jListHistorialIMC.removeAll();
+        String[] lista = new String[100];
+        for(int i = 0; i<usuario.getHistorialIMC().size() ; i++){
+            lista[i] = usuario.getHistorialIMC().get(i).toString();
+        }
+        this.jListHistorialIMC.setListData(lista);
+    }
 
     private void pBRegAlimentosIngeridosUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBRegAlimentosIngeridosUsuarioMouseClicked
         CardLayout cl = (CardLayout) panelContenido.getLayout();
@@ -3684,6 +3712,7 @@ public class GUI extends javax.swing.JFrame {
         pBRegPlanAlimentacionUsuario.setBackground(Color.LIGHT_GRAY);
 
         cargarBoxProfesionalesSolicitudDePlan();
+        cargarJListHistorialIMC();
     }//GEN-LAST:event_pBRegPlanAlimentacionUsuarioMouseClicked
 
     private void pBRegPlanAlimentacionUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBRegPlanAlimentacionUsuarioMousePressed
@@ -5032,15 +5061,33 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_boxRolInicSecActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        double peso = Integer.parseInt(txtPesoSolicitud.getText());
-        double altura = Integer.parseInt(txtAlturaSolicitud.getText());
-        double metros = altura/100;
-        double metros2 = metros*metros;
-        int imc = (int) (peso/metros2);
-        String cadena = String.valueOf(imc);
-        txtBoxIMC.setText(cadena);
-        EstadoSanitario estado = new EstadoSanitario(peso, altura, imc, new Date());
-        usuario.agregarEstadoSanitario(estado);
+        if(sistema.validarCampoTxtNoEsVacio(txtPesoSolicitud.getText())
+                && sistema.validarCampoTxtNoEsVacio(txtAlturaSolicitud.getText())){
+            double peso = Integer.parseInt(txtPesoSolicitud.getText());
+            double altura = Integer.parseInt(txtAlturaSolicitud.getText());
+            if(validarDatosIMC()){
+                double metros = altura/100;
+                double metros2 = metros*metros;
+                int imc = (int) (peso/metros2);
+                String cadena = String.valueOf(imc);
+                txtBoxIMC.setText(cadena);
+                Date date = new Date();  // Crea el objeto Date
+                Calendar calendar = Calendar.getInstance(); // Obtiene una instancia de Calendar
+                calendar.setTime(date); // Asigna la fecha al Calendar
+                EstadoSanitario estado = new EstadoSanitario(peso, altura, imc, calendar);
+                usuario.agregarEstadoSanitario(estado);
+                jLabelRegistroIMC.setVisible(true);
+                String[] lista = new String[100];
+                for(int i = 0; i<usuario.getHistorialIMC().size() ; i++){
+                    lista[i] = usuario.getHistorialIMC().get(i).toString();
+                }
+                this.jListHistorialIMC.setListData(lista);
+                
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe ingresar un peso y una estatura válida");
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txtBoxIMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoxIMCActionPerformed
@@ -5145,8 +5192,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -5155,6 +5201,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelRegistroIMC;
+    private javax.swing.JList<String> jListHistorialIMC;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -5172,6 +5220,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane21;
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
+    private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;

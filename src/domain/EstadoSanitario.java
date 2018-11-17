@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -15,9 +16,9 @@ public class EstadoSanitario {
     private double peso;
     private double altura;
     private double imc;
-    private Date fecha;
+    private Calendar fecha;
     
-    public EstadoSanitario(double peso, double altura, double imc, Date fecha){
+    public EstadoSanitario(double peso, double altura, double imc, Calendar fecha){
         this.peso = peso;
         this.altura = altura;
         this.imc = imc;
@@ -26,7 +27,7 @@ public class EstadoSanitario {
     
     @Override
     public String toString() {
-        return "Altura: " + this.altura + " Peso: " + this.peso + " IMC: " + this.imc;
+        return this.fecha.get(Calendar.DAY_OF_MONTH) + "/" + this.fecha.get(Calendar.MONTH) + "/" + this.fecha.get(Calendar.YEAR) +" IMC: " + this.imc;// + this.fecha.+ " IMC: " + this.imc;
     }
     
 }

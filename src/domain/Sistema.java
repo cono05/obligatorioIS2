@@ -390,4 +390,6 @@ public class Sistema extends Observable implements Serializable {
         boolean retorno = !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();
         return retorno;
     }
+    
+//    public validarDatosIMC()
 }
