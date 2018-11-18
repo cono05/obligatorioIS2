@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Persona {
+public class Persona implements Serializable {
     private String nombres;
     private String apellidos;
     private Date nacimiento;

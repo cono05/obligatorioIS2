@@ -5,6 +5,7 @@
  */
 package domain;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author cono_
  */
-public class EstadoSanitario {
+public class EstadoSanitario implements Serializable {
     private double peso;
     private double altura;
     private double imc;

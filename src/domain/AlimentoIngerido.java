@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class AlimentoIngerido {
+public class AlimentoIngerido implements Serializable {
 
     private Alimento alimentoIngeridoUsuario;
     private Date fecha;

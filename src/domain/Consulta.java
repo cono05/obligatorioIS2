@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Consulta {
+public class Consulta implements Serializable{
 
     private Usuario usuarioDeConsulta;
     private String descripcion;

@@ -1,9 +1,10 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import javax.swing.Icon;
 
-public class Usuario extends Persona {
+public class Usuario extends Persona implements Serializable {
 
     private Icon avatar;
     private String nacionalidad;

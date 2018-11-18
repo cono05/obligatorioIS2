@@ -1,8 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ParProfesionalConsulta {
+public class ParProfesionalConsulta implements Serializable {
 
     private Profesional profesional;
     private Consulta consulta;

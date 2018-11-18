@@ -1,10 +1,11 @@
 package domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.*;
 import javax.swing.Icon;
 
-public class Profesional extends Persona {
+public class Profesional extends Persona implements Serializable {
 
     private Icon avatar;
     private String titulo;

@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 
-public class Alimento {
+
+public class Alimento implements Serializable{
 
     private String nombre;
     private String tipo;

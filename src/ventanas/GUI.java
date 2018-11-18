@@ -14,7 +14,11 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,11 +39,14 @@ public class GUI extends javax.swing.JFrame {
     /**
      * Creates new form GUI
      */
-    Sistema sistema = new Sistema();
+    // Sistema sistema = new Sistema();
+    Sistema sistema;
     Usuario usuario = new Usuario();
     Profesional profesional = new Profesional();
 
-    public GUI() {
+    public GUI(Sistema sist) {
+        sistema = sist;
+        
         initComponents();
         setLocationRelativeTo(null);
         cargarIconoDeVentana();
@@ -805,7 +812,7 @@ public class GUI extends javax.swing.JFrame {
         }
         return retorno;
     }
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1158,6 +1165,11 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -3470,6 +3482,18 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_panelLateralMouseDragged
 
     private void lbCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbCerrarMouseClicked
+        try {
+            FileOutputStream ff = new FileOutputStream("sistema.txt");
+            BufferedOutputStream bb = new BufferedOutputStream(ff);
+            try (ObjectOutputStream ss = new ObjectOutputStream(bb)) {
+                Sistema sist = sistema;
+                ss.writeObject(sist);
+                // ss.flush();
+                ss.close();
+            } catch (IOException e) {
+            }
+        } catch (IOException e) {
+        }
         System.exit(0);
     }//GEN-LAST:event_lbCerrarMouseClicked
 
@@ -5093,6 +5117,22 @@ public class GUI extends javax.swing.JFrame {
     private void txtBoxIMCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBoxIMCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBoxIMCActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        try {
+            FileOutputStream ff = new FileOutputStream("sistema.txt");
+            BufferedOutputStream bb = new BufferedOutputStream(ff);
+            try (ObjectOutputStream ss = new ObjectOutputStream(bb)) {
+                Sistema sist = sistema;
+                ss.writeObject(sist);
+                // ss.flush();
+                ss.close();
+            } catch (IOException e) {
+            }
+        } catch (IOException e) {
+        }
+        System.exit(0);      
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

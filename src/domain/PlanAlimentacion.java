@@ -1,7 +1,9 @@
 package domain;
 
+import java.io.Serializable;
 
-public class PlanAlimentacion {
+
+public class PlanAlimentacion implements Serializable{
 
     private Usuario usuario;
     private int peso;
