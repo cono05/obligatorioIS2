@@ -26,11 +26,27 @@ public class EstadoSanitario implements Serializable {
         this.fecha = fecha;
     }
     
+    public double getPeso(){
+        return this.peso;
+    }
+    
+    public double getAltura(){
+        return this.altura;
+    }
+    
+    public double getIMC(){
+        return this.imc;
+    }
+    
+    public Calendar getFecha(){
+        return this.fecha;
+    }
+    
     @Override
     public String toString() {
         return this.fecha.get(Calendar.DAY_OF_MONTH) + "/" + this.fecha.get(Calendar.MONTH)
                 + "/" + this.fecha.get(Calendar.YEAR) + ": Altura: " + this.altura + 
-                " Peso: " +this.peso +" IMC: " + this.imc;// + this.fecha.+ " IMC: " + this.imc;
+                " Peso: " +this.peso +" IMC: " + this.imc;
     }
     
 }
