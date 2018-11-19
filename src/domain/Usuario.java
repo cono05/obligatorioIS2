@@ -10,10 +10,8 @@ public class Usuario extends Persona implements Serializable {
     private Icon avatar;
     private String nacionalidad;
     private String descripcion;
-    //carnes lacteos frutas verduras otros
     private boolean[] preferencias = new boolean[5];
     private List<Preferencia> listaPreferencias;
-    //salado dulce lacteos carnes rojas otros
     private boolean[] restricciones = new boolean[5];
     private List<AlimentoIngerido> alimentosIngeridos;
     private PlanAlimentacion planDeAlimentacion;
