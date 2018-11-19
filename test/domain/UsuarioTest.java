@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import domain.Sistema;
+import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Icon;
 
@@ -188,5 +189,20 @@ public class UsuarioTest {
         unUsuario.setApellidos(apellido);
         String resultadoEsperado = nombre + " " + apellido;
         assertEquals(resultadoEsperado, unUsuario.toString());
+    }
+    
+    @Test
+    public void testAgregarEstadoSanitario(){
+        Usuario usuario = new Usuario();
+        double peso = 80;
+        double altura = 170;
+        double imc = peso/(altura*altura);
+        Date date = new Date();
+        Calendar calendar = Calendar.getInstance(); // Obtiene una instancia de Calendar
+        calendar.setTime(date);
+        EstadoSanitario estado = new EstadoSanitario(peso, altura, imc , calendar);
+        usuario.agregarEstadoSanitario(estado);
+        assertTrue(usuario.getHistorialIMC().size()==1);
+        
     }
 }

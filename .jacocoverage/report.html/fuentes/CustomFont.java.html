@@ -14,24 +14,24 @@ import java.io.InputStream;
  */
 public class CustomFont {
 
-<span class="fc" id="L17">    private Font font = null;</span>
+<span class="nc" id="L17">    private Font font = null;</span>
 
-<span class="fc" id="L19">    public CustomFont() {</span>
-<span class="fc" id="L20">        String fontName = &quot;Roboto-Regular.ttf&quot;;</span>
+<span class="nc" id="L19">    public CustomFont() {</span>
+<span class="nc" id="L20">        String fontName = &quot;Roboto-Regular.ttf&quot;;</span>
         try {
             //Se carga la fuente
-<span class="fc" id="L23">            InputStream is = getClass().getResourceAsStream(fontName);</span>
-<span class="fc" id="L24">            font = Font.createFont(Font.TRUETYPE_FONT, is);</span>
+<span class="nc" id="L23">            InputStream is = getClass().getResourceAsStream(fontName);</span>
+<span class="nc" id="L24">            font = Font.createFont(Font.TRUETYPE_FONT, is);</span>
 <span class="nc" id="L25">        } catch (Exception ex) {</span>
             //Si existe un error se carga fuente por defecto ARIAL
 <span class="nc" id="L27">            System.err.println(fontName + &quot; No se cargo la fuente&quot;);</span>
 <span class="nc" id="L28">            font = new Font(&quot;Arial&quot;, Font.PLAIN, 14);</span>
-<span class="fc" id="L29">        }</span>
-<span class="fc" id="L30">    }</span>
+<span class="nc" id="L29">        }</span>
+<span class="nc" id="L30">    }</span>
 
     public Font MyFont(int estilo, float tamanio) {
-<span class="fc" id="L33">        Font tfont = font.deriveFont(estilo, tamanio);</span>
-<span class="fc" id="L34">        return tfont;</span>
+<span class="nc" id="L33">        Font tfont = font.deriveFont(estilo, tamanio);</span>
+<span class="nc" id="L34">        return tfont;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

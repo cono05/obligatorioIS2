@@ -890,6 +890,8 @@ public class GUI extends javax.swing.JFrame {
         pBVolverInicioProf = new javax.swing.JPanel();
         lbAvatarInicSecProfesional = new javax.swing.JLabel();
         lbMostrarNombreProfesional = new javax.swing.JLabel();
+        pBVerHistoriales = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         panelContenido = new javax.swing.JPanel();
         PInicio = new javax.swing.JPanel();
         PConsultaProfUsuario = new javax.swing.JPanel();
@@ -1163,6 +1165,13 @@ public class GUI extends javax.swing.JFrame {
         btnInicSec = new javax.swing.JButton();
         lbNombreInicSecError = new javax.swing.JLabel();
         lbRolError = new javax.swing.JLabel();
+        PHistorialesIMC = new javax.swing.JPanel();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        jListUsuarios = new javax.swing.JList<>();
+        jScrollPane26 = new javax.swing.JScrollPane();
+        jListHistoriales = new javax.swing.JList<>();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/check.png"))); // NOI18N
 
@@ -1903,6 +1912,37 @@ public class GUI extends javax.swing.JFrame {
         pBVolverInicioProf.add(lbMostrarNombreProfesional, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 160, 50));
 
         panelBotonesProfesional.add(pBVolverInicioProf, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 190, 160));
+
+        pBVerHistoriales.setBackground(new java.awt.Color(153, 153, 153));
+        pBVerHistoriales.setForeground(new java.awt.Color(255, 255, 255));
+        pBVerHistoriales.setPreferredSize(new java.awt.Dimension(267, 40));
+        pBVerHistoriales.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pBVerHistorialesMouseClicked(evt);
+            }
+        });
+
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Ver historial de IMC de un usuario");
+
+        javax.swing.GroupLayout pBVerHistorialesLayout = new javax.swing.GroupLayout(pBVerHistoriales);
+        pBVerHistoriales.setLayout(pBVerHistorialesLayout);
+        pBVerHistorialesLayout.setHorizontalGroup(
+            pBVerHistorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pBVerHistorialesLayout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addGap(45, 45, 45))
+        );
+        pBVerHistorialesLayout.setVerticalGroup(
+            pBVerHistorialesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pBVerHistorialesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel10)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        panelBotonesProfesional.add(pBVerHistoriales, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 330, 270, -1));
 
         panelLateral.add(panelBotonesProfesional, "panelBotonesProfesional");
 
@@ -3030,7 +3070,7 @@ public class GUI extends javax.swing.JFrame {
                 txtBoxIMCActionPerformed(evt);
             }
         });
-        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 60, 30));
+        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 60, 30));
 
         jLabelRegistroIMC.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRegistroIMC.setText("<html>*Su peso, altura e IMC <br> han sido registrados en su historial</html>");
@@ -3206,7 +3246,8 @@ public class GUI extends javax.swing.JFrame {
         btnAmpliarInformacion.setBackground(new java.awt.Color(153, 153, 153));
         btnAmpliarInformacion.setFont(cf.MyFont(0, 20f));
         btnAmpliarInformacion.setForeground(new java.awt.Color(255, 255, 255));
-        btnAmpliarInformacion.setText("Amlpiar");
+        btnAmpliarInformacion.setText("Ampliar");
+        btnAmpliarInformacion.setActionCommand("Ampliar");
         btnAmpliarInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAmpliarInformacionActionPerformed(evt);
@@ -3558,6 +3599,56 @@ public class GUI extends javax.swing.JFrame {
         PInicSec.add(lbRolError, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
 
         panelContenido.add(PInicSec, "panelYaEstoyReg");
+
+        PHistorialesIMC.setBackground(new java.awt.Color(0, 0, 0));
+
+        jListUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListUsuariosMouseClicked(evt);
+            }
+        });
+        jScrollPane25.setViewportView(jListUsuarios);
+
+        jScrollPane26.setViewportView(jListHistoriales);
+
+        jLabel12.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel12.setText("Seleccione un usuario de la lista");
+
+        jLabel13.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel13.setText("Historial de altura, peso e IMC del usuario seleccionado");
+
+        javax.swing.GroupLayout PHistorialesIMCLayout = new javax.swing.GroupLayout(PHistorialesIMC);
+        PHistorialesIMC.setLayout(PHistorialesIMCLayout);
+        PHistorialesIMCLayout.setHorizontalGroup(
+            PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PHistorialesIMCLayout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel12)
+                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PHistorialesIMCLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(jLabel13)))
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+        PHistorialesIMCLayout.setVerticalGroup(
+            PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PHistorialesIMCLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(jScrollPane26))
+                .addContainerGap(193, Short.MAX_VALUE))
+        );
+
+        panelContenido.add(PHistorialesIMC, "PanelHistorialesIMC");
 
         panelPrincipal.add(panelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 30, 770, 530));
 
@@ -4312,7 +4403,7 @@ public class GUI extends javax.swing.JFrame {
         txtApellidoProf.setText(profesional.getApellidos());
         dcNacimientoProf.setDate(profesional.getNacimiento());
         txtTitulo.setText(profesional.getTitulo());
-        dcGraduacionProf.setDate(profesional.getNacimiento());
+        dcGraduacionProf.setDate(profesional.getGraduacion());
         boxPaisTitProf.setSelectedItem(profesional.getPaisObtencionTitulo());
 
         btnRegistrarProfesional.setVisible(false);
@@ -5420,6 +5511,41 @@ public class GUI extends javax.swing.JFrame {
         jLayPreferencias.setVisible(true);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void pBVerHistorialesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBVerHistorialesMouseClicked
+        if(sistema.getListaUsuarios().isEmpty()){
+            JOptionPane.showMessageDialog(null, "No existen ususarios con historiales para consultar");
+        }
+        else{
+            CardLayout cl = (CardLayout) panelContenido.getLayout();
+            cl.show(panelContenido, "PanelHistorialesIMC");  
+            cargarUsuariosParaHistoriales();
+        }        
+    }//GEN-LAST:event_pBVerHistorialesMouseClicked
+
+    private void jListUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListUsuariosMouseClicked
+        String seleccionado = jListUsuarios.getSelectedValue();
+        for(int i = 0 ; i < sistema.getListaUsuarios().size() ; i++){
+            Usuario indice = sistema.getListaUsuarios().get(i);
+            if(indice.toString().equals(seleccionado)){
+                cargarHistorialImcDeUnUsuario(indice);
+            }
+        }
+    }//GEN-LAST:event_jListUsuariosMouseClicked
+
+    private void cargarHistorialImcDeUnUsuario(Usuario unUsuario){
+        String[] lista = new String[100];
+        for(int i = 0; i<unUsuario.getHistorialIMC().size() ; i++){
+            lista[i] = unUsuario.getHistorialIMC().get(i).toString();
+        }
+        this.jListHistoriales.setListData(lista);
+    }
+    private void cargarUsuariosParaHistoriales(){        
+        String[] lista = new String[100];
+        for(int i = 0; i<sistema.getListaUsuarios().size() ; i++){
+            lista[i] = sistema.getListaUsuarios().get(i).toString();
+        }
+        this.jListUsuarios.setListData(lista);
+    }
     /**
      * @param args the command line arguments
      */
@@ -5460,6 +5586,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel PAmpliarDatosUsuarioPlanesProfesional;
     private javax.swing.JPanel PConsultaProfUsuario;
     private javax.swing.JPanel PConsultasRecibidasProfesional;
+    private javax.swing.JPanel PHistorialesIMC;
     private javax.swing.JPanel PInicSec;
     private javax.swing.JPanel PInicio;
     private javax.swing.JPanel PInicioProfesional;
@@ -5519,7 +5646,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -5532,6 +5662,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayPreferencias;
     private javax.swing.JList<String> jListHistorialIMC;
     private javax.swing.JList<String> jListPreferencias;
+    private javax.swing.JList<String> jListHistoriales;
+    private javax.swing.JList<String> jListUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -5551,6 +5683,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
+    private javax.swing.JScrollPane jScrollPane26;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5726,6 +5859,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel pBRegProfesional;
     private javax.swing.JPanel pBRegUsuario;
     private javax.swing.JPanel pBSalirProf;
+    private javax.swing.JPanel pBVerHistoriales;
     private javax.swing.JPanel pBVolverInicioProf;
     private javax.swing.JPanel pBVolverInicioUsuario;
     private javax.swing.JPanel pBYaEstoyReg;
