@@ -3133,7 +3133,8 @@ public class GUI extends javax.swing.JFrame {
         btnAmpliarInformacion.setBackground(new java.awt.Color(153, 153, 153));
         btnAmpliarInformacion.setFont(cf.MyFont(0, 20f));
         btnAmpliarInformacion.setForeground(new java.awt.Color(255, 255, 255));
-        btnAmpliarInformacion.setText("Amlpiar");
+        btnAmpliarInformacion.setText("Ampliar");
+        btnAmpliarInformacion.setActionCommand("Ampliar");
         btnAmpliarInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAmpliarInformacionActionPerformed(evt);
