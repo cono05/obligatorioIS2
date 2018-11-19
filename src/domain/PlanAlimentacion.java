@@ -11,11 +11,11 @@ public class PlanAlimentacion implements Serializable{
     private int horasDeActividad;
     private String detalle;
     private boolean estado;// true corresponde a emitido, false a pendiente
-    private String alimentosDiaSemana[][] = new String[6][7];
-    private String desayuno[] = new String[8];
-    private String almuerzo[] = new String[8];
-    private String merienda[] = new String[8];
-    private String cena[] = new String[8];
+    private String[][] alimentosDiaSemana = new String[6][7];
+    private String[] desayuno = new String[8];
+    private String[] almuerzo = new String[8];
+    private String[] merienda = new String[8];
+    private String[] cena = new String[8];
 
     public Usuario getUsuario() {
         return usuario;

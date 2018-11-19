@@ -8,11 +8,11 @@ import javax.swing.Icon;
 public class Sistema extends Observable implements Serializable {
 
     
-    public ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-    public ArrayList<Profesional> listaProfesionales = new ArrayList<Profesional>();
-    public ArrayList<Alimento> listaAlimentos = new ArrayList<Alimento>();
+    private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
+    private ArrayList<Profesional> listaProfesionales = new ArrayList<Profesional>();
+    private ArrayList<Alimento> listaAlimentos = new ArrayList<Alimento>();
 
-    public ArrayList<Usuario> getListaUsuarios() {
+    public List<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
 
@@ -20,7 +20,7 @@ public class Sistema extends Observable implements Serializable {
         this.listaUsuarios = listaUsuarios;
     }
 
-    public ArrayList<Profesional> getListaProfesionales() {
+    public List<Profesional> getListaProfesionales() {
         return listaProfesionales;
     }
 
@@ -28,7 +28,7 @@ public class Sistema extends Observable implements Serializable {
         this.listaProfesionales = listaProfesionales;
     }
 
-    public ArrayList<Alimento> getListaAlimentos() {
+    public List<Alimento> getListaAlimentos() {
         return listaAlimentos;
     }
 

@@ -40,355 +40,357 @@ import javax.swing.Icon;
 <span class="fc" id="L40">        this.getListaUsuarios().add(usuario);</span>
 <span class="fc" id="L41">    }</span>
 
-    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, boolean[] preferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
+    // public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, boolean[] preferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
+    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, ArrayList&lt;Preferencia&gt; listaPreferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
 
-<span class="fc" id="L45">        boolean existeApellido = false;</span>
-<span class="fc" id="L46">        boolean usuarioRegistrado = false;</span>
+<span class="fc" id="L46">        boolean existeApellido = false;</span>
+<span class="fc" id="L47">        boolean usuarioRegistrado = false;</span>
 
-<span class="fc" id="L48">        Usuario usuario = new Usuario();</span>
+<span class="fc" id="L49">        Usuario usuario = new Usuario();</span>
 
-<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaUsuarios().size(); i++) {</span>
-<span class="pc bpc" id="L51" title="1 of 2 branches missed.">            if (getListaUsuarios().get(i).getApellidos().equals(apellido)) {</span>
-<span class="fc" id="L52">                existeApellido = true;</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaUsuarios().size(); i++) {</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">            if (getListaUsuarios().get(i).getApellidos().equals(apellido)) {</span>
+<span class="fc" id="L53">                existeApellido = true;</span>
             }
         }
 
-<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (!existeApellido</span>
-<span class="fc bfc" id="L57" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
-<span class="pc bpc" id="L58" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
-<span class="fc bfc" id="L59" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(apellido)</span>
-<span class="pc bpc" id="L60" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(apellido)</span>
-<span class="fc bfc" id="L61" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nacionalidad)</span>
-<span class="pc bpc" id="L62" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nacionalidad)</span>
-<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                &amp;&amp; validarFecha(nacimiento, 0)) {</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (!existeApellido</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
+<span class="pc bpc" id="L59" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
+<span class="fc bfc" id="L60" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(apellido)</span>
+<span class="pc bpc" id="L61" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(apellido)</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nacionalidad)</span>
+<span class="pc bpc" id="L63" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nacionalidad)</span>
+<span class="pc bpc" id="L64" title="1 of 2 branches missed.">                &amp;&amp; validarFecha(nacimiento, 0)) {</span>
 
-<span class="fc" id="L65">            usuario.setNombres(nombre);</span>
-<span class="fc" id="L66">            usuario.setApellidos(apellido);</span>
-<span class="fc" id="L67">            usuario.setPreferencias(preferencias);</span>
-<span class="fc" id="L68">            usuario.setNacionalidad(nacionalidad);</span>
-<span class="fc" id="L69">            usuario.setRestricciones(restricciones);</span>
-<span class="fc" id="L70">            usuario.setNacimiento(nacimiento);</span>
-<span class="fc" id="L71">            usuario.setDescripcion(descripcion);</span>
-<span class="fc" id="L72">            usuario.setAvatar(icono);</span>
+<span class="fc" id="L66">            usuario.setNombres(nombre);</span>
+<span class="fc" id="L67">            usuario.setApellidos(apellido);</span>
+            // usuario.setPreferencias(preferencias);
+<span class="fc" id="L69">            usuario.setListaPreferencias(listaPreferencias);</span>
+<span class="fc" id="L70">            usuario.setNacionalidad(nacionalidad);</span>
+<span class="fc" id="L71">            usuario.setRestricciones(restricciones);</span>
+<span class="fc" id="L72">            usuario.setNacimiento(nacimiento);</span>
+<span class="fc" id="L73">            usuario.setDescripcion(descripcion);</span>
+<span class="fc" id="L74">            usuario.setAvatar(icono);</span>
 
-<span class="fc" id="L74">            agregarUsuario(usuario);</span>
-<span class="fc" id="L75">            usuarioRegistrado = true;</span>
+<span class="fc" id="L76">            agregarUsuario(usuario);</span>
+<span class="fc" id="L77">            usuarioRegistrado = true;</span>
         }
-<span class="fc" id="L77">        return usuarioRegistrado;</span>
+<span class="fc" id="L79">        return usuarioRegistrado;</span>
     }
 
     public void agregarProfesional(Profesional profesional) {
-<span class="fc" id="L81">        getListaProfesionales().add(profesional);</span>
-<span class="fc" id="L82">    }</span>
+<span class="fc" id="L83">        getListaProfesionales().add(profesional);</span>
+<span class="fc" id="L84">    }</span>
 
     public void registrarProfesional(String nombre, String apellido, String titulo, String paisObtencionTitulo, Date fechaNacimiento, Date fechaGraduacion, Icon avatar) {
 
-<span class="fc" id="L86">        boolean existeApellido = false;</span>
+<span class="fc" id="L88">        boolean existeApellido = false;</span>
 
-<span class="fc" id="L88">        Profesional profesional = new Profesional();</span>
+<span class="fc" id="L90">        Profesional profesional = new Profesional();</span>
 
-<span class="fc bfc" id="L90" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaProfesionales().size(); i++) {</span>
-<span class="pc bpc" id="L91" title="1 of 2 branches missed.">            if (getListaProfesionales().get(i).getApellidos().equals(apellido)) {</span>
-<span class="fc" id="L92">                existeApellido = true;</span>
+<span class="fc bfc" id="L92" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaProfesionales().size(); i++) {</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">            if (getListaProfesionales().get(i).getApellidos().equals(apellido)) {</span>
+<span class="fc" id="L94">                existeApellido = true;</span>
             }
         }
 
-<span class="fc bfc" id="L96" title="All 2 branches covered.">        if (!existeApellido</span>
-<span class="fc bfc" id="L97" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
-<span class="fc bfc" id="L98" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(nombre)</span>
-<span class="fc bfc" id="L99" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(apellido)</span>
-<span class="fc bfc" id="L100" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(apellido)</span>
-<span class="fc bfc" id="L101" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(titulo)</span>
-<span class="fc bfc" id="L102" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(titulo)</span>
-<span class="fc bfc" id="L103" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(paisObtencionTitulo)</span>
-<span class="pc bpc" id="L104" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(paisObtencionTitulo)</span>
-<span class="pc bpc" id="L105" title="1 of 2 branches missed.">                &amp;&amp; validarFecha(fechaNacimiento, 18)) {</span>
+<span class="fc bfc" id="L98" title="All 2 branches covered.">        if (!existeApellido</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
+<span class="fc bfc" id="L100" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(nombre)</span>
+<span class="fc bfc" id="L101" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(apellido)</span>
+<span class="fc bfc" id="L102" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(apellido)</span>
+<span class="fc bfc" id="L103" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(titulo)</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">                &amp;&amp; validarStringSinNumero(titulo)</span>
+<span class="fc bfc" id="L105" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(paisObtencionTitulo)</span>
+<span class="pc bpc" id="L106" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(paisObtencionTitulo)</span>
+<span class="pc bpc" id="L107" title="1 of 2 branches missed.">                &amp;&amp; validarFecha(fechaNacimiento, 18)) {</span>
 
-<span class="fc" id="L107">            profesional.setNombres(nombre);</span>
-<span class="fc" id="L108">            profesional.setApellidos(apellido);</span>
-<span class="fc" id="L109">            profesional.setTitulo(titulo);</span>
-<span class="fc" id="L110">            profesional.setPaisObtencionTitulo(paisObtencionTitulo);</span>
-<span class="fc" id="L111">            profesional.setNacimiento(fechaNacimiento);</span>
-<span class="fc" id="L112">            profesional.setGraduacion(fechaGraduacion);</span>
-<span class="fc" id="L113">            profesional.setAvatar(avatar);</span>
+<span class="fc" id="L109">            profesional.setNombres(nombre);</span>
+<span class="fc" id="L110">            profesional.setApellidos(apellido);</span>
+<span class="fc" id="L111">            profesional.setTitulo(titulo);</span>
+<span class="fc" id="L112">            profesional.setPaisObtencionTitulo(paisObtencionTitulo);</span>
+<span class="fc" id="L113">            profesional.setNacimiento(fechaNacimiento);</span>
+<span class="fc" id="L114">            profesional.setGraduacion(fechaGraduacion);</span>
+<span class="fc" id="L115">            profesional.setAvatar(avatar);</span>
 
-<span class="fc" id="L115">            agregarProfesional(profesional);</span>
+<span class="fc" id="L117">            agregarProfesional(profesional);</span>
         }
-<span class="fc" id="L117">    }</span>
+<span class="fc" id="L119">    }</span>
 
     public void agregarAlimento(Alimento alimento) {
-<span class="fc" id="L120">        getListaAlimentos().add(alimento);</span>
-<span class="fc" id="L121">    }</span>
+<span class="fc" id="L122">        getListaAlimentos().add(alimento);</span>
+<span class="fc" id="L123">    }</span>
 
     public void registrarAlimento(String nombre, String tipo, int[] nutrientesPrincipales) {
 
-<span class="fc" id="L125">        boolean existeAlimento = false;</span>
-<span class="fc" id="L126">        Alimento alimento = new Alimento();</span>
+<span class="fc" id="L127">        boolean existeAlimento = false;</span>
+<span class="fc" id="L128">        Alimento alimento = new Alimento();</span>
 
-<span class="fc bfc" id="L128" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaAlimentos().size(); i++) {</span>
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            if (getListaAlimentos().get(i).getNombre().equals(nombre)) {</span>
-<span class="fc" id="L130">                existeAlimento = true;</span>
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for (int i = 0; i &lt; getListaAlimentos().size(); i++) {</span>
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">            if (getListaAlimentos().get(i).getNombre().equals(nombre)) {</span>
+<span class="fc" id="L132">                existeAlimento = true;</span>
             }
         }
 
-<span class="fc bfc" id="L134" title="All 2 branches covered.">        if (!existeAlimento</span>
-<span class="fc bfc" id="L135" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
-<span class="pc bpc" id="L136" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
-<span class="fc bfc" id="L137" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(tipo)</span>
-<span class="pc bpc" id="L138" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(tipo)) {</span>
+<span class="fc bfc" id="L136" title="All 2 branches covered.">        if (!existeAlimento</span>
+<span class="fc bfc" id="L137" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(nombre)</span>
+<span class="pc bpc" id="L138" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(tipo)</span>
+<span class="pc bpc" id="L140" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(tipo)) {</span>
 
-<span class="fc" id="L140">            alimento.setNombre(nombre);</span>
-<span class="fc" id="L141">            alimento.setTipo(tipo);</span>
-<span class="fc" id="L142">            alimento.setNutrientesPrincipales(nutrientesPrincipales);</span>
-<span class="fc" id="L143">            agregarAlimento(alimento);</span>
+<span class="fc" id="L142">            alimento.setNombre(nombre);</span>
+<span class="fc" id="L143">            alimento.setTipo(tipo);</span>
+<span class="fc" id="L144">            alimento.setNutrientesPrincipales(nutrientesPrincipales);</span>
+<span class="fc" id="L145">            agregarAlimento(alimento);</span>
         }
-<span class="fc" id="L145">    }</span>
+<span class="fc" id="L147">    }</span>
 
     public Usuario obtenerUsuario(String nombreApellidoUsuarioBuscado) {
         String nombreUsuario;
 
-<span class="fc bfc" id="L150" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaUsuarios().size(); i++) {</span>
-<span class="fc" id="L151">            nombreUsuario = this.getListaUsuarios().get(i).toString();</span>
-<span class="fc bfc" id="L152" title="All 2 branches covered.">            if (nombreUsuario.equals(nombreApellidoUsuarioBuscado)) {</span>
-<span class="fc" id="L153">                return this.getListaUsuarios().get(i);</span>
+<span class="fc bfc" id="L152" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaUsuarios().size(); i++) {</span>
+<span class="fc" id="L153">            nombreUsuario = this.getListaUsuarios().get(i).toString();</span>
+<span class="fc bfc" id="L154" title="All 2 branches covered.">            if (nombreUsuario.equals(nombreApellidoUsuarioBuscado)) {</span>
+<span class="fc" id="L155">                return this.getListaUsuarios().get(i);</span>
             }
         }
-<span class="fc" id="L156">        return null;</span>
+<span class="fc" id="L158">        return null;</span>
     }
 
     public Profesional obtenerProfesional(String nombreApellidoProfesionalBuscado) {
-<span class="fc" id="L160">        String nombreProfesional = &quot;&quot;;</span>
-<span class="fc" id="L161">        Profesional profesionalBuscado = null;</span>
-<span class="fc bfc" id="L162" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="fc" id="L163">            nombreProfesional = this.getListaProfesionales().get(i).toString();</span>
-<span class="pc bpc" id="L164" title="1 of 2 branches missed.">            if (nombreProfesional.equals(nombreApellidoProfesionalBuscado)) {</span>
-<span class="fc" id="L165">                profesionalBuscado = this.getListaProfesionales().get(i);</span>
+<span class="fc" id="L162">        String nombreProfesional = &quot;&quot;;</span>
+<span class="fc" id="L163">        Profesional profesionalBuscado = null;</span>
+<span class="fc bfc" id="L164" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="fc" id="L165">            nombreProfesional = this.getListaProfesionales().get(i).toString();</span>
+<span class="pc bpc" id="L166" title="1 of 2 branches missed.">            if (nombreProfesional.equals(nombreApellidoProfesionalBuscado)) {</span>
+<span class="fc" id="L167">                profesionalBuscado = this.getListaProfesionales().get(i);</span>
             }
         }
-<span class="fc" id="L168">        return profesionalBuscado;</span>
+<span class="fc" id="L170">        return profesionalBuscado;</span>
     }
 
     public void agregarConsulta(Profesional profesional, Consulta consulta) {
-<span class="fc" id="L172">        profesional.getListaConsultas().add(consulta);</span>
-<span class="fc" id="L173">    }</span>
+<span class="fc" id="L174">        profesional.getListaConsultas().add(consulta);</span>
+<span class="fc" id="L175">    }</span>
 
     public void agregarConsultaProf(String nombre, String descripcion, Usuario usuario, Enums.MotivoConsulta motivo) {
-<span class="fc" id="L176">        Profesional profesionalBuscado = null;</span>
+<span class="fc" id="L178">        Profesional profesionalBuscado = null;</span>
 
-<span class="fc bfc" id="L178" title="All 2 branches covered.">        if (validarCampoTxtNoEsVacio(nombre)</span>
-<span class="pc bpc" id="L179" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
-<span class="fc bfc" id="L180" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(descripcion)) {</span>
+<span class="fc bfc" id="L180" title="All 2 branches covered.">        if (validarCampoTxtNoEsVacio(nombre)</span>
+<span class="pc bpc" id="L181" title="1 of 2 branches missed.">                &amp;&amp; validarStringSinNumero(nombre)</span>
+<span class="fc bfc" id="L182" title="All 2 branches covered.">                &amp;&amp; validarCampoTxtNoEsVacio(descripcion)) {</span>
 
-<span class="fc" id="L182">            Consulta nuevaConsulta = new Consulta();</span>
-<span class="fc" id="L183">            nuevaConsulta.setUsuarioDeConsulta(usuario);</span>
-<span class="fc" id="L184">            nuevaConsulta.setDescripcion(descripcion);</span>
-<span class="fc" id="L185">            nuevaConsulta.setMotivo(motivo);</span>
-<span class="fc" id="L186">            nuevaConsulta.setEstado(false);</span>
-<span class="fc" id="L187">            nuevaConsulta.setFecha(new Date());</span>
-<span class="fc" id="L188">            profesionalBuscado = convertirStringNombreProfesionalEnProfesional(nombre);</span>
-<span class="fc" id="L189">            profesionalBuscado.getListaConsultas().add(nuevaConsulta);</span>
+<span class="fc" id="L184">            Consulta nuevaConsulta = new Consulta();</span>
+<span class="fc" id="L185">            nuevaConsulta.setUsuarioDeConsulta(usuario);</span>
+<span class="fc" id="L186">            nuevaConsulta.setDescripcion(descripcion);</span>
+<span class="fc" id="L187">            nuevaConsulta.setMotivo(motivo);</span>
+<span class="fc" id="L188">            nuevaConsulta.setEstado(false);</span>
+<span class="fc" id="L189">            nuevaConsulta.setFecha(new Date());</span>
+<span class="fc" id="L190">            profesionalBuscado = convertirStringNombreProfesionalEnProfesional(nombre);</span>
+<span class="fc" id="L191">            profesionalBuscado.getListaConsultas().add(nuevaConsulta);</span>
         }
-<span class="fc" id="L191">    }</span>
+<span class="fc" id="L193">    }</span>
 
     public void agregarAlimentoUsuario(Usuario usuario, String nombreAlimento, Date fechaDeConsumoAlimento) {
-<span class="fc bfc" id="L194" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaAlimentos().size(); i++) {</span>
-<span class="fc" id="L195">            String alimento = this.getListaAlimentos().get(i).toString();</span>
-<span class="pc bpc" id="L196" title="1 of 2 branches missed.">            if (alimento.equals(nombreAlimento)) {</span>
-<span class="fc" id="L197">                AlimentoIngerido alimentoIngerido = new AlimentoIngerido();</span>
-<span class="fc" id="L198">                alimentoIngerido.setFecha(fechaDeConsumoAlimento);</span>
-<span class="fc" id="L199">                alimentoIngerido.setAlimentoIngeridoUsuario(this.getListaAlimentos().get(i));</span>
-<span class="fc" id="L200">                usuario.getAlimentosIngeridos().add(alimentoIngerido);</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaAlimentos().size(); i++) {</span>
+<span class="fc" id="L197">            String alimento = this.getListaAlimentos().get(i).toString();</span>
+<span class="pc bpc" id="L198" title="1 of 2 branches missed.">            if (alimento.equals(nombreAlimento)) {</span>
+<span class="fc" id="L199">                AlimentoIngerido alimentoIngerido = new AlimentoIngerido();</span>
+<span class="fc" id="L200">                alimentoIngerido.setFecha(fechaDeConsumoAlimento);</span>
+<span class="fc" id="L201">                alimentoIngerido.setAlimentoIngeridoUsuario(this.getListaAlimentos().get(i));</span>
+<span class="fc" id="L202">                usuario.getAlimentosIngeridos().add(alimentoIngerido);</span>
             }
         }
-<span class="fc" id="L203">    }</span>
+<span class="fc" id="L205">    }</span>
 
     public void borrarAlimentoUsuario(Usuario usuario, String alimentoBorrar) {
-<span class="fc bfc" id="L206" title="All 2 branches covered.">        for (int i = 0; i &lt; usuario.getAlimentosIngeridos().size(); i++) {</span>
-<span class="fc" id="L207">            String alimentoBuscado = usuario.getAlimentosIngeridos().get(i).getAlimentoIngeridoUsuario().toString();</span>
-<span class="pc bpc" id="L208" title="1 of 2 branches missed.">            if (alimentoBorrar.equals(alimentoBuscado)) {</span>
-<span class="fc" id="L209">                usuario.getAlimentosIngeridos().remove(i);</span>
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        for (int i = 0; i &lt; usuario.getAlimentosIngeridos().size(); i++) {</span>
+<span class="fc" id="L209">            String alimentoBuscado = usuario.getAlimentosIngeridos().get(i).getAlimentoIngeridoUsuario().toString();</span>
+<span class="pc bpc" id="L210" title="1 of 2 branches missed.">            if (alimentoBorrar.equals(alimentoBuscado)) {</span>
+<span class="fc" id="L211">                usuario.getAlimentosIngeridos().remove(i);</span>
             }
         }
-<span class="fc" id="L212">    }</span>
+<span class="fc" id="L214">    }</span>
 
     public String[][] planAlimentacionUsuario(String nombreApellidoUsuario) {
-<span class="fc" id="L215">        String[][] matrizDelPlan = new String[4][8];</span>
-<span class="fc" id="L216">        matrizDelPlan[0][0] = &quot;Desayuno&quot;;</span>
-<span class="fc" id="L217">        matrizDelPlan[1][0] = &quot;Almuerzo&quot;;</span>
-<span class="fc" id="L218">        matrizDelPlan[2][0] = &quot;Merienda&quot;;</span>
-<span class="fc" id="L219">        matrizDelPlan[3][0] = &quot;Cena&quot;;</span>
+<span class="fc" id="L217">        String[][] matrizDelPlan = new String[4][8];</span>
+<span class="fc" id="L218">        matrizDelPlan[0][0] = &quot;Desayuno&quot;;</span>
+<span class="fc" id="L219">        matrizDelPlan[1][0] = &quot;Almuerzo&quot;;</span>
+<span class="fc" id="L220">        matrizDelPlan[2][0] = &quot;Merienda&quot;;</span>
+<span class="fc" id="L221">        matrizDelPlan[3][0] = &quot;Cena&quot;;</span>
 
-<span class="fc bfc" id="L221" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="fc bfc" id="L222" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().size(); j++) {</span>
-<span class="fc" id="L223">                String usuarioBuscado = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j).getUsuario().toString();</span>
-<span class="pc bpc" id="L224" title="1 of 2 branches missed.">                if (nombreApellidoUsuario.equals(usuarioBuscado)) {</span>
+<span class="fc bfc" id="L223" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().size(); j++) {</span>
+<span class="fc" id="L225">                String usuarioBuscado = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j).getUsuario().toString();</span>
+<span class="pc bpc" id="L226" title="1 of 2 branches missed.">                if (nombreApellidoUsuario.equals(usuarioBuscado)) {</span>
 
-<span class="fc" id="L226">                    PlanAlimentacion planDelUsuario = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j);</span>
-<span class="fc bfc" id="L227" title="All 2 branches covered.">                    for (int k = 1; k &lt; planDelUsuario.getDesayuno().length; k++) {</span>
-<span class="fc" id="L228">                        matrizDelPlan[0][k] = planDelUsuario.getDesayuno()[k];</span>
-<span class="fc" id="L229">                        matrizDelPlan[1][k] = planDelUsuario.getAlmuerzo()[k];</span>
-<span class="fc" id="L230">                        matrizDelPlan[2][k] = planDelUsuario.getMerienda()[k];</span>
-<span class="fc" id="L231">                        matrizDelPlan[3][k] = planDelUsuario.getCena()[k];</span>
+<span class="fc" id="L228">                    PlanAlimentacion planDelUsuario = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j);</span>
+<span class="fc bfc" id="L229" title="All 2 branches covered.">                    for (int k = 1; k &lt; planDelUsuario.getDesayuno().length; k++) {</span>
+<span class="fc" id="L230">                        matrizDelPlan[0][k] = planDelUsuario.getDesayuno()[k];</span>
+<span class="fc" id="L231">                        matrizDelPlan[1][k] = planDelUsuario.getAlmuerzo()[k];</span>
+<span class="fc" id="L232">                        matrizDelPlan[2][k] = planDelUsuario.getMerienda()[k];</span>
+<span class="fc" id="L233">                        matrizDelPlan[3][k] = planDelUsuario.getCena()[k];</span>
                     }
 
                 }
             }
         }
-<span class="fc" id="L237">        return matrizDelPlan;</span>
+<span class="fc" id="L239">        return matrizDelPlan;</span>
     }
 
     public ArrayList&lt;ParProfesionalConsulta&gt; todasConsultasDeUnUsuario(String nombreApellidoUsuarioBuscado) {
 
-<span class="fc" id="L242">        ArrayList&lt;ParProfesionalConsulta&gt; retorno = new ArrayList&lt;ParProfesionalConsulta&gt;();</span>
+<span class="fc" id="L244">        ArrayList&lt;ParProfesionalConsulta&gt; retorno = new ArrayList&lt;ParProfesionalConsulta&gt;();</span>
 
-<span class="fc bfc" id="L244" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="fc bfc" id="L245" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaConsultas().size(); j++) {</span>
-<span class="fc" id="L246">                String nombreUsuarioDeConsulta = this.getListaProfesionales().get(i).getListaConsultas().get(j).getUsuarioDeConsulta().toString();</span>
-<span class="pc bpc" id="L247" title="1 of 2 branches missed.">                if (nombreUsuarioDeConsulta.equals(nombreApellidoUsuarioBuscado)) {</span>
-<span class="fc" id="L248">                    ParProfesionalConsulta par = new ParProfesionalConsulta();</span>
-<span class="fc" id="L249">                    par.setProfesional(this.getListaProfesionales().get(i));</span>
-<span class="fc" id="L250">                    par.setConsulta(this.getListaProfesionales().get(i).getListaConsultas().get(j));</span>
-<span class="fc" id="L251">                    retorno.add(par);</span>
+<span class="fc bfc" id="L246" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="fc bfc" id="L247" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaConsultas().size(); j++) {</span>
+<span class="fc" id="L248">                String nombreUsuarioDeConsulta = this.getListaProfesionales().get(i).getListaConsultas().get(j).getUsuarioDeConsulta().toString();</span>
+<span class="pc bpc" id="L249" title="1 of 2 branches missed.">                if (nombreUsuarioDeConsulta.equals(nombreApellidoUsuarioBuscado)) {</span>
+<span class="fc" id="L250">                    ParProfesionalConsulta par = new ParProfesionalConsulta();</span>
+<span class="fc" id="L251">                    par.setProfesional(this.getListaProfesionales().get(i));</span>
+<span class="fc" id="L252">                    par.setConsulta(this.getListaProfesionales().get(i).getListaConsultas().get(j));</span>
+<span class="fc" id="L253">                    retorno.add(par);</span>
                 }
             }
         }
-<span class="fc" id="L255">        return retorno;</span>
+<span class="fc" id="L257">        return retorno;</span>
     }
 
 
     public void agregarSolicitud(Profesional profesional, PlanAlimentacion plan) {
-<span class="fc bfc" id="L260" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="pc bpc" id="L261" title="1 of 2 branches missed.">            if (this.getListaProfesionales().get(i).equals(profesional)) {</span>
-<span class="fc" id="L262">                this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().add(plan);</span>
+<span class="fc bfc" id="L262" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="pc bpc" id="L263" title="1 of 2 branches missed.">            if (this.getListaProfesionales().get(i).equals(profesional)) {</span>
+<span class="fc" id="L264">                this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().add(plan);</span>
             }
         }
-<span class="fc" id="L265">    }</span>
+<span class="fc" id="L267">    }</span>
 
     public Profesional convertirStringNombreProfesionalEnProfesional(String nombreApellidoProfesional) {
-<span class="fc" id="L268">        Profesional retorno = null;</span>
-<span class="fc bfc" id="L269" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="fc" id="L270">            String nombre = this.getListaProfesionales().get(i).toString();</span>
-<span class="pc bpc" id="L271" title="1 of 2 branches missed.">            if (nombre.equals(nombreApellidoProfesional)) {</span>
-<span class="fc" id="L272">                retorno = this.getListaProfesionales().get(i);</span>
+<span class="fc" id="L270">        Profesional retorno = null;</span>
+<span class="fc bfc" id="L271" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="fc" id="L272">            String nombre = this.getListaProfesionales().get(i).toString();</span>
+<span class="pc bpc" id="L273" title="1 of 2 branches missed.">            if (nombre.equals(nombreApellidoProfesional)) {</span>
+<span class="fc" id="L274">                retorno = this.getListaProfesionales().get(i);</span>
             }
         }
-<span class="fc" id="L275">        return retorno;</span>
+<span class="fc" id="L277">        return retorno;</span>
     }
 
     public void solicitarPlan(Usuario usuario, Profesional profesional, int peso, int altura, int horasDeActividad, String detalles) {
-<span class="fc" id="L279">        PlanAlimentacion nuevaSolicitud = new PlanAlimentacion();</span>
+<span class="fc" id="L281">        PlanAlimentacion nuevaSolicitud = new PlanAlimentacion();</span>
 
-<span class="fc bfc" id="L281" title="All 2 branches covered.">        if (validarUsuario(usuario)</span>
-<span class="pc bpc" id="L282" title="1 of 2 branches missed.">                &amp;&amp; validarProfesional(profesional)</span>
-<span class="pc bpc" id="L283" title="1 of 2 branches missed.">                &amp;&amp; validarPeso(peso)</span>
-<span class="pc bpc" id="L284" title="1 of 2 branches missed.">                &amp;&amp; validarAltura(altura)</span>
-<span class="pc bpc" id="L285" title="1 of 2 branches missed.">                &amp;&amp; validarHoras(horasDeActividad)) {</span>
+<span class="fc bfc" id="L283" title="All 2 branches covered.">        if (validarUsuario(usuario)</span>
+<span class="pc bpc" id="L284" title="1 of 2 branches missed.">                &amp;&amp; validarProfesional(profesional)</span>
+<span class="pc bpc" id="L285" title="1 of 2 branches missed.">                &amp;&amp; validarPeso(peso)</span>
+<span class="pc bpc" id="L286" title="1 of 2 branches missed.">                &amp;&amp; validarAltura(altura)</span>
+<span class="pc bpc" id="L287" title="1 of 2 branches missed.">                &amp;&amp; validarHoras(horasDeActividad)) {</span>
 
-<span class="fc" id="L287">            nuevaSolicitud.setAltura(altura);</span>
-<span class="fc" id="L288">            nuevaSolicitud.setEstado(false);</span>
-<span class="fc" id="L289">            nuevaSolicitud.setHorasDeActividad(horasDeActividad);</span>
-<span class="fc" id="L290">            nuevaSolicitud.setPeso(peso);</span>
-<span class="fc" id="L291">            nuevaSolicitud.setUsuario(usuario);</span>
-<span class="fc" id="L292">            nuevaSolicitud.setDetalle(detalles);</span>
+<span class="fc" id="L289">            nuevaSolicitud.setAltura(altura);</span>
+<span class="fc" id="L290">            nuevaSolicitud.setEstado(false);</span>
+<span class="fc" id="L291">            nuevaSolicitud.setHorasDeActividad(horasDeActividad);</span>
+<span class="fc" id="L292">            nuevaSolicitud.setPeso(peso);</span>
+<span class="fc" id="L293">            nuevaSolicitud.setUsuario(usuario);</span>
+<span class="fc" id="L294">            nuevaSolicitud.setDetalle(detalles);</span>
 
-<span class="fc" id="L294">            agregarSolicitud(profesional, nuevaSolicitud);</span>
+<span class="fc" id="L296">            agregarSolicitud(profesional, nuevaSolicitud);</span>
         }
-<span class="fc" id="L296">    }</span>
+<span class="fc" id="L298">    }</span>
 
     //FUNCIONES PARA VALIDAR CAMPOS
     public boolean validarCampoTxtNoEsVacio(String campo) {
        // boolean esCampoValido = false;
        
-<span class="fc bfc" id="L302" title="All 2 branches covered.">        if (campo.trim().length() == 0) {</span>
+<span class="fc bfc" id="L304" title="All 2 branches covered.">        if (campo.trim().length() == 0) {</span>
             //esCampoValido = false;
-<span class="fc" id="L304">            return false;</span>
+<span class="fc" id="L306">            return false;</span>
         }else
-<span class="fc" id="L306">            return true;</span>
+<span class="fc" id="L308">            return true;</span>
        // return false;//esCampoValido;
     }
 
     public boolean validarStringSinNumero(String s) {
-<span class="fc" id="L311">        boolean esCampoValido = true;</span>
+<span class="fc" id="L313">        boolean esCampoValido = true;</span>
 
-<span class="fc bfc" id="L313" title="All 2 branches covered.">        for (int i = 0; i &lt; s.length(); i++) {</span>
-<span class="fc bfc" id="L314" title="All 2 branches covered.">            if (Character.isDigit(s.charAt(i))) {</span>
-<span class="fc" id="L315">                esCampoValido = false;</span>
+<span class="fc bfc" id="L315" title="All 2 branches covered.">        for (int i = 0; i &lt; s.length(); i++) {</span>
+<span class="fc bfc" id="L316" title="All 2 branches covered.">            if (Character.isDigit(s.charAt(i))) {</span>
+<span class="fc" id="L317">                esCampoValido = false;</span>
             }
         }
-<span class="fc" id="L318">        return esCampoValido;</span>
+<span class="fc" id="L320">        return esCampoValido;</span>
     }
 
     public boolean validarFecha(Date fechaValidar, int mayorIgualDe) {
-<span class="fc" id="L322">        boolean esMayor = false;</span>
+<span class="fc" id="L324">        boolean esMayor = false;</span>
 
-<span class="fc" id="L324">        Date fechaActual = new Date();</span>
+<span class="fc" id="L326">        Date fechaActual = new Date();</span>
 
-<span class="fc" id="L326">        Calendar calFechaActual = Calendar.getInstance();</span>
+<span class="fc" id="L328">        Calendar calFechaActual = Calendar.getInstance();</span>
 
-<span class="fc" id="L328">        calFechaActual.setTime(fechaActual);</span>
-<span class="fc" id="L329">        int anioFechaActual = calFechaActual.get(Calendar.YEAR);</span>
+<span class="fc" id="L330">        calFechaActual.setTime(fechaActual);</span>
+<span class="fc" id="L331">        int anioFechaActual = calFechaActual.get(Calendar.YEAR);</span>
 
-<span class="fc" id="L331">        Calendar calValidar = Calendar.getInstance();</span>
-<span class="fc" id="L332">        calValidar.setTime(fechaValidar);</span>
-<span class="fc" id="L333">        int anioValidar = calValidar.get(Calendar.YEAR);</span>
+<span class="fc" id="L333">        Calendar calValidar = Calendar.getInstance();</span>
+<span class="fc" id="L334">        calValidar.setTime(fechaValidar);</span>
+<span class="fc" id="L335">        int anioValidar = calValidar.get(Calendar.YEAR);</span>
 
-<span class="pc bpc" id="L335" title="1 of 2 branches missed.">        if (anioFechaActual - anioValidar &gt;= mayorIgualDe) {</span>
-<span class="fc" id="L336">            esMayor = true;</span>
+<span class="fc bfc" id="L337" title="All 2 branches covered.">        if (anioFechaActual - anioValidar &gt;= mayorIgualDe) {</span>
+<span class="fc" id="L338">            esMayor = true;</span>
         }
-<span class="fc" id="L338">        return esMayor;</span>
+<span class="fc" id="L340">        return esMayor;</span>
     }
 
     public boolean validarPeso(int peso) {
-<span class="fc" id="L342">        boolean esCampoValido = true;</span>
-<span class="fc bfc" id="L343" title="All 4 branches covered.">        if (peso &lt;= 0 || peso &gt; 500) {</span>
-<span class="fc" id="L344">            esCampoValido = false;</span>
+<span class="fc" id="L344">        boolean esCampoValido = true;</span>
+<span class="fc bfc" id="L345" title="All 4 branches covered.">        if (peso &lt;= 0 || peso &gt; 500) {</span>
+<span class="fc" id="L346">            esCampoValido = false;</span>
         }
-<span class="fc" id="L346">        return esCampoValido;</span>
+<span class="fc" id="L348">        return esCampoValido;</span>
     }
 
     public boolean validarAltura(int altura) {
-<span class="fc" id="L350">        boolean esCampoValido = true;</span>
-<span class="fc bfc" id="L351" title="All 4 branches covered.">        if (altura &lt;= 0 || altura &gt; 250) {</span>
-<span class="fc" id="L352">            esCampoValido = false;</span>
+<span class="fc" id="L352">        boolean esCampoValido = true;</span>
+<span class="fc bfc" id="L353" title="All 4 branches covered.">        if (altura &lt;= 0 || altura &gt; 250) {</span>
+<span class="fc" id="L354">            esCampoValido = false;</span>
         }
-<span class="fc" id="L354">        return esCampoValido;</span>
+<span class="fc" id="L356">        return esCampoValido;</span>
     }
 
     public boolean validarHoras(int horas) {
-<span class="fc" id="L358">        boolean esCampoValido = true;</span>
-<span class="fc bfc" id="L359" title="All 4 branches covered.">        if (horas &lt;= 0 || horas &gt; 24) {</span>
-<span class="fc" id="L360">            esCampoValido = false;</span>
+<span class="fc" id="L360">        boolean esCampoValido = true;</span>
+<span class="fc bfc" id="L361" title="All 4 branches covered.">        if (horas &lt;= 0 || horas &gt; 24) {</span>
+<span class="fc" id="L362">            esCampoValido = false;</span>
         }
-<span class="fc" id="L362">        return esCampoValido;</span>
+<span class="fc" id="L364">        return esCampoValido;</span>
     }
 
     public boolean validarUsuario(Usuario usuario) {
-<span class="fc" id="L366">        return this.getListaUsuarios().contains(usuario);</span>
+<span class="fc" id="L368">        return this.getListaUsuarios().contains(usuario);</span>
     }
 
     public boolean validarProfesional(Profesional profesional) {
-<span class="fc" id="L370">        return this.getListaProfesionales().contains(profesional);</span>
+<span class="fc" id="L372">        return this.getListaProfesionales().contains(profesional);</span>
     }
 
     public boolean obtenerEstadoPlanAlimentacionDadoNombreUsuario(String nombreAlimentoUsuario) {
-<span class="fc" id="L374">        boolean estado = false;</span>
+<span class="fc" id="L376">        boolean estado = false;</span>
 
-<span class="fc bfc" id="L376" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
-<span class="fc bfc" id="L377" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().size(); j++) {</span>
-<span class="fc" id="L378">                String usuarioBuscado = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j).getUsuario() + &quot;&quot;;</span>
-<span class="pc bpc" id="L379" title="1 of 2 branches missed.">                if (nombreAlimentoUsuario.equals(usuarioBuscado)) {</span>
+<span class="fc bfc" id="L378" title="All 2 branches covered.">        for (int i = 0; i &lt; this.getListaProfesionales().size(); i++) {</span>
+<span class="fc bfc" id="L379" title="All 2 branches covered.">            for (int j = 0; j &lt; this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().size(); j++) {</span>
+<span class="fc" id="L380">                String usuarioBuscado = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j).getUsuario() + &quot;&quot;;</span>
+<span class="pc bpc" id="L381" title="1 of 2 branches missed.">                if (nombreAlimentoUsuario.equals(usuarioBuscado)) {</span>
 
-<span class="fc" id="L381">                    PlanAlimentacion planDelUsuario = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j);</span>
-<span class="fc" id="L382">                    estado = planDelUsuario.isEstado();</span>
+<span class="fc" id="L383">                    PlanAlimentacion planDelUsuario = this.getListaProfesionales().get(i).getListaSolicitudesDePlanes().get(j);</span>
+<span class="fc" id="L384">                    estado = planDelUsuario.isEstado();</span>
                 }
             }
         }
-<span class="fc" id="L386">        return estado;</span>
+<span class="fc" id="L388">        return estado;</span>
     }
     
     public boolean existenUsuariosRegistrados(){
-<span class="fc bfc" id="L390" title="All 4 branches covered.">        boolean retorno = !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();</span>
-<span class="fc" id="L391">        return retorno;</span>
+<span class="fc bfc" id="L392" title="All 4 branches covered.">        boolean retorno = !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();</span>
+<span class="fc" id="L393">        return retorno;</span>
     }
     
 //    public validarDatosIMC()

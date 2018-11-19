@@ -7,7 +7,7 @@ public class Alimento implements Serializable{
 
     private String nombre;
     private String tipo;
-    private int nutrientesPrincipales[] = new int[5];
+    private int[] nutrientesPrincipales = new int[5];
 
     public String getNombre() {
         return nombre;

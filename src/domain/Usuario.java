@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.Icon;
 
 public class Usuario extends Persona implements Serializable {
@@ -11,15 +12,17 @@ public class Usuario extends Persona implements Serializable {
     private String descripcion;
     //carnes lacteos frutas verduras otros
     private boolean[] preferencias = new boolean[5];
-    private ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+    private ArrayList<Preferencia> listaPreferencias;
     //salado dulce lacteos carnes rojas otros
     private boolean[] restricciones = new boolean[5];
-    private ArrayList<AlimentoIngerido> alimentosIngeridos = new ArrayList<AlimentoIngerido>();
+    private ArrayList<AlimentoIngerido> alimentosIngeridos;
     private PlanAlimentacion planDeAlimentacion;
     private ArrayList<EstadoSanitario> historialEstadoSanitario;
     
     public Usuario(){
         this.historialEstadoSanitario = new ArrayList<>();
+        this.listaPreferencias = new ArrayList<>();
+        this.alimentosIngeridos = new ArrayList<>();
     }
     
     public void agregarEstadoSanitario(EstadoSanitario estadoSanitario){
@@ -66,7 +69,7 @@ public class Usuario extends Persona implements Serializable {
         this.restricciones = restricciones;
     }
 
-    public ArrayList<AlimentoIngerido> getAlimentosIngeridos() {
+    public List<AlimentoIngerido> getAlimentosIngeridos() {
         return alimentosIngeridos;
     }
 
@@ -90,7 +93,7 @@ public class Usuario extends Persona implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public ArrayList<EstadoSanitario> getHistorialIMC(){
+    public List<EstadoSanitario> getHistorialIMC(){
         return this.historialEstadoSanitario;
     }
     
