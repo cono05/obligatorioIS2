@@ -6,6 +6,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import domain.Sistema;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.Icon;
@@ -33,9 +34,10 @@ public class UsuarioTest {
         String descripcion = "Intolerante a la lactosa";
         Date nacimiento = new Date();
         boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
 
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
 
@@ -54,9 +56,10 @@ public class UsuarioTest {
         String descripcion = "Intolerante a la lactosa";
         Date nacimiento = new Date();
         boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
 
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
 
@@ -75,9 +78,10 @@ public class UsuarioTest {
         String descripcion = "Intolerante a la lactosa";
         Date nacimiento = new Date();
         boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
 
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
 
@@ -96,9 +100,10 @@ public class UsuarioTest {
         String descripcion = "";
         Date nacimiento = new Date();
         boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
 
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
 
@@ -117,9 +122,10 @@ public class UsuarioTest {
         String descripcion = "Intolerante a la lactosa";
         Date nacimiento = new Date();
         boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
 
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
 
@@ -155,6 +161,20 @@ public class UsuarioTest {
         assertArrayEquals(preferencias, unUsuario.getPreferencias());
     }
 
+    @Test
+    public void testGetListaPreferencias() {
+        Usuario unUsuario = new Usuario();
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Preferencia uno = new Preferencia();
+        uno.setNombre("Pan");
+        listaPreferencias.add(uno);
+        Preferencia dos = new Preferencia();
+        dos.setNombre("Pan");
+        listaPreferencias.add(dos);
+        unUsuario.setListaPreferencias(listaPreferencias);
+        assertEquals(listaPreferencias, unUsuario.getListaPreferencias());
+    }
+    
     @Test
     public void testGetRestricciones() {
         Usuario unUsuario = new Usuario();

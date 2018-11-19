@@ -74,10 +74,11 @@ public class SistemaTest {
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -90,10 +91,11 @@ public class SistemaTest {
         String apellidos = "";
         String nacionalidad = "Uruguay";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -106,10 +108,11 @@ public class SistemaTest {
         String apellidos = "Medina";
         String nacionalidad = "";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -122,10 +125,11 @@ public class SistemaTest {
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -137,6 +141,7 @@ public class SistemaTest {
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date fechaNacimiento;
         Calendar cal = Calendar.getInstance();
@@ -145,9 +150,9 @@ public class SistemaTest {
         cal.set(Calendar.MONTH, 12);
         fechaNacimiento = cal.getTime();
         String descripcion = "";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, fechaNacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, fechaNacimiento, descripcion, null);
         int resultadoEsperado = unSistema.getListaUsuarios().size();
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, fechaNacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, fechaNacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
 
@@ -161,10 +166,11 @@ public class SistemaTest {
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
         boolean preferencias[] = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
-        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, null);
+        unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
     }
@@ -693,7 +699,7 @@ public class SistemaTest {
         String descripcion = "Por que alimento puedo sustituir el pollo?";
         Usuario unUsuario = new Usuario();
         Enums.MotivoConsulta motivo = Enums.MotivoConsulta.ALIMENTOSINGERIDOS;
-        int resultadoEsperado = unProfesional.getListaConsultas().size() + 1;
+        int resultadoEsperado = unProfesional.getListaConsultas().size();
         unSistema.agregarConsultaProf(nombreCompleto, descripcion, unUsuario, motivo);
         int resultadoObtenido = unProfesional.getListaConsultas().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
@@ -1017,6 +1023,7 @@ public class SistemaTest {
     public void testValidarFecha() {
         Sistema unSistema = new Sistema();
         Date fecha = new Date();
+        fecha.setDate(2018);
         assertFalse(unSistema.validarFecha(fecha, 0));
     }
 
@@ -1269,7 +1276,7 @@ public class SistemaTest {
         unPar.setConsulta(unaConsulta);
         listaEsperada.add(unPar);
         String nombreCompleto = unUsuario.toString();
-        assertEquals(listaEsperada, unSistema.todasConsultasDeUnUsuario(nombreCompleto));
+        assertEquals(listaEsperada.get(0), unSistema.todasConsultasDeUnUsuario(nombreCompleto).get(0));
     }
 
     @Test

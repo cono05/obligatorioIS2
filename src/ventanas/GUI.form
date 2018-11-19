@@ -1634,7 +1634,7 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Container class="javax.swing.JPanel" name="lbOtro">
+            <Container class="javax.swing.JPanel" name="PRegUsuario">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
@@ -4562,7 +4562,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Ampliar"/>
-                    <Property name="actionCommand" type="java.lang.String" value="Ampliar"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAmpliarInformacionActionPerformed"/>
@@ -5515,7 +5514,7 @@
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel12" min="-2" max="-2" attributes="0"/>
-                              <Component id="jScrollPane25" min="-2" pref="182" max="-2" attributes="0"/>
+                              <Component id="jScrollPane27" min="-2" pref="182" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -5539,7 +5538,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jScrollPane25" pref="269" max="32767" attributes="0"/>
+                              <Component id="jScrollPane27" pref="269" max="32767" attributes="0"/>
                               <Component id="jScrollPane26" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="193" max="32767" attributes="0"/>
@@ -5548,7 +5547,7 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane25">
+                <Container class="javax.swing.JScrollPane" name="jScrollPane27">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>

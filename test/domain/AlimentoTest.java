@@ -29,7 +29,7 @@ public class AlimentoTest {
     }
 
     @Test
-    public void testRegistrarAlimentoApellidoVacio() {
+    public void testRegistrarAlimentoTipoVacio() {
         String nombre = "Manzana";
         String tipo = "";
         int[] nutrientesPrincipales = new int[5];

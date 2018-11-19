@@ -920,7 +920,7 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane17 = new javax.swing.JScrollPane();
         txtRespuestaUsuarioConsultaUsuario = new javax.swing.JTextArea();
         lbNombre13 = new javax.swing.JLabel();
-        lbOtro = new javax.swing.JPanel();
+        PRegUsuario = new javax.swing.JPanel();
         lbRegistroUsuario = new javax.swing.JLabel();
         lbApellido = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
@@ -1166,7 +1166,7 @@ public class GUI extends javax.swing.JFrame {
         lbNombreInicSecError = new javax.swing.JLabel();
         lbRolError = new javax.swing.JLabel();
         PHistorialesIMC = new javax.swing.JPanel();
-        jScrollPane25 = new javax.swing.JScrollPane();
+        jScrollPane27 = new javax.swing.JScrollPane();
         jListUsuarios = new javax.swing.JList<>();
         jScrollPane26 = new javax.swing.JScrollPane();
         jListHistoriales = new javax.swing.JList<>();
@@ -2103,18 +2103,18 @@ public class GUI extends javax.swing.JFrame {
         panelContenido.add(PConsultaProfUsuario, "panelConsultaProf");
         PConsultaProfUsuario.getAccessibleContext().setAccessibleDescription("");
 
-        lbOtro.setBackground(new java.awt.Color(0, 0, 0));
-        lbOtro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PRegUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        PRegUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbRegistroUsuario.setFont(cf.MyFont(1, 30f));
         lbRegistroUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lbRegistroUsuario.setText("Registrar Usuario");
-        lbOtro.add(lbRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 40));
+        PRegUsuario.add(lbRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 40));
 
         lbApellido.setFont(cf.MyFont(0, 20f));
         lbApellido.setForeground(new java.awt.Color(255, 255, 255));
         lbApellido.setText("Apellidos");
-        lbOtro.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
+        PRegUsuario.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
 
         txtApellido.setFont(cf.MyFont(0, 20f));
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -2127,20 +2127,20 @@ public class GUI extends javax.swing.JFrame {
                 txtApellidoKeyTyped(evt);
             }
         });
-        lbOtro.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 240, 32));
+        PRegUsuario.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 240, 32));
 
         boxNacionalidadUsuario.setFont(cf.MyFont(0, 20f));
-        lbOtro.add(boxNacionalidadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
+        PRegUsuario.add(boxNacionalidadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
 
         lbNacimiento.setFont(cf.MyFont(0, 20f));
         lbNacimiento.setForeground(new java.awt.Color(255, 255, 255));
         lbNacimiento.setText("Nacimiento");
-        lbOtro.add(lbNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        PRegUsuario.add(lbNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         lbPreferencias.setFont(cf.MyFont(0, 20f));
         lbPreferencias.setForeground(new java.awt.Color(255, 255, 255));
         lbPreferencias.setText("Preferencias");
-        lbOtro.add(lbPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
+        PRegUsuario.add(lbPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         checkboxResOtros.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResOtros.setFont(cf.MyFont(0, 16f));
@@ -2151,7 +2151,7 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResOtrosActionPerformed(evt);
             }
         });
-        lbOtro.add(checkboxResOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
+        PRegUsuario.add(checkboxResOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
         checkboxResCarnesRojas.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResCarnesRojas.setFont(cf.MyFont(0, 16f));
@@ -2162,12 +2162,12 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResCarnesRojasActionPerformed(evt);
             }
         });
-        lbOtro.add(checkboxResCarnesRojas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
+        PRegUsuario.add(checkboxResCarnesRojas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
 
         lbDescripcion.setFont(cf.MyFont(0, 20f));
         lbDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         lbDescripcion.setText("Descripción");
-        lbOtro.add(lbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
+        PRegUsuario.add(lbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
 
         checkboxResSalado.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResSalado.setFont(cf.MyFont(0, 16f));
@@ -2178,31 +2178,31 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResSaladoActionPerformed(evt);
             }
         });
-        lbOtro.add(checkboxResSalado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
+        PRegUsuario.add(checkboxResSalado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
         checkboxResDulce.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResDulce.setFont(cf.MyFont(0, 16f));
         checkboxResDulce.setForeground(new java.awt.Color(255, 255, 255));
         checkboxResDulce.setText("Dulce");
-        lbOtro.add(checkboxResDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
+        PRegUsuario.add(checkboxResDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         checkboxResLacteos.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResLacteos.setFont(cf.MyFont(0, 16f));
         checkboxResLacteos.setForeground(new java.awt.Color(255, 255, 255));
         checkboxResLacteos.setText("Lacteos");
-        lbOtro.add(checkboxResLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
+        PRegUsuario.add(checkboxResLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
 
         lbRestricciones.setFont(cf.MyFont(0, 20f));
         lbRestricciones.setForeground(new java.awt.Color(255, 255, 255));
         lbRestricciones.setText("Restricciones");
-        lbOtro.add(lbRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
+        PRegUsuario.add(lbRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
 
         txtDescripcionUsuario.setColumns(20);
         txtDescripcionUsuario.setFont(cf.MyFont(0, 16f));
         txtDescripcionUsuario.setRows(5);
         jScrollPane1.setViewportView(txtDescripcionUsuario);
 
-        lbOtro.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 340, 100));
+        PRegUsuario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 340, 100));
 
         lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar.png"))); // NOI18N
         lbAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2211,7 +2211,7 @@ public class GUI extends javax.swing.JFrame {
                 lbAvatarMouseClicked(evt);
             }
         });
-        lbOtro.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, 140));
+        PRegUsuario.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, 140));
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnRegistrarUsuario.setFont(cf.MyFont(0, 20f));
@@ -2222,36 +2222,36 @@ public class GUI extends javax.swing.JFrame {
                 btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        lbOtro.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
+        PRegUsuario.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
 
         lbCheckApellidoErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        lbOtro.add(lbCheckApellidoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
+        PRegUsuario.add(lbCheckApellidoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
 
         lbCheckDchNacimientoErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        lbOtro.add(lbCheckDchNacimientoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
+        PRegUsuario.add(lbCheckDchNacimientoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
 
         lbCheckNombreErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        lbOtro.add(lbCheckNombreErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
+        PRegUsuario.add(lbCheckNombreErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
 
         boxCheckNacionalidadErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        lbOtro.add(boxCheckNacionalidadErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
+        PRegUsuario.add(boxCheckNacionalidadErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
 
         lbCheckApellidoBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        lbOtro.add(lbCheckApellidoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
+        PRegUsuario.add(lbCheckApellidoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
 
         lbCheckNombreBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        lbOtro.add(lbCheckNombreBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
+        PRegUsuario.add(lbCheckNombreBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
 
         boxCheckNacionalidadBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        lbOtro.add(boxCheckNacionalidadBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
+        PRegUsuario.add(boxCheckNacionalidadBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
 
         lbCheckDchNacimientoBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        lbOtro.add(lbCheckDchNacimientoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
+        PRegUsuario.add(lbCheckDchNacimientoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
 
         dcNacimientoUsuario.setFont(cf.MyFont(0, 20f));
         dcNacimientoUsuario.setMaxSelectableDate(new Date());
         dcNacimientoUsuario.setMinSelectableDate(new java.util.Date(-1735676116000L));
-        lbOtro.add(dcNacimientoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 240, 30));
+        PRegUsuario.add(dcNacimientoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 240, 30));
 
         btnEditarUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnEditarUsuario.setFont(cf.MyFont(0, 20f));
@@ -2262,19 +2262,19 @@ public class GUI extends javax.swing.JFrame {
                 btnEditarUsuarioActionPerformed(evt);
             }
         });
-        lbOtro.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
+        PRegUsuario.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
 
         lbCheckRegistroUsuarioExitoso.setForeground(new java.awt.Color(51, 204, 0));
         lbCheckRegistroUsuarioExitoso.setText("<html>*Registro exitoso</html>");
-        lbOtro.add(lbCheckRegistroUsuarioExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
+        PRegUsuario.add(lbCheckRegistroUsuarioExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
         lbCheckRegistroUsuarioRepetido.setForeground(new java.awt.Color(255, 0, 0));
         lbCheckRegistroUsuarioRepetido.setText("<html>*Parece que el usuario que <br> intenta registrar ya existe</html>");
-        lbOtro.add(lbCheckRegistroUsuarioRepetido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
+        PRegUsuario.add(lbCheckRegistroUsuarioRepetido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
         jScrollPane25.setViewportView(jListPreferencias);
 
-        lbOtro.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 130, 150));
+        PRegUsuario.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 130, 150));
 
         txtNombre.setFont(cf.MyFont(0, 20f));
         txtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -2287,12 +2287,12 @@ public class GUI extends javax.swing.JFrame {
                 txtNombreKeyTyped(evt);
             }
         });
-        lbOtro.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 230, 32));
+        PRegUsuario.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 230, 32));
 
         lbNombre.setFont(cf.MyFont(0, 20f));
         lbNombre.setForeground(new java.awt.Color(255, 255, 255));
         lbNombre.setText("Nombres");
-        lbOtro.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+        PRegUsuario.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
 
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -2300,7 +2300,7 @@ public class GUI extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        lbOtro.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+        PRegUsuario.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
 
         btnQuitar.setText("Quitar");
         btnQuitar.addActionListener(new java.awt.event.ActionListener() {
@@ -2308,7 +2308,7 @@ public class GUI extends javax.swing.JFrame {
                 btnQuitarActionPerformed(evt);
             }
         });
-        lbOtro.add(btnQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+        PRegUsuario.add(btnQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
 
         jLayPreferencias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
@@ -2419,14 +2419,14 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        lbOtro.add(jLayPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 640, 50));
+        PRegUsuario.add(jLayPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 640, 50));
 
         lbNacionalidad.setFont(cf.MyFont(0, 20f));
         lbNacionalidad.setForeground(new java.awt.Color(255, 255, 255));
         lbNacionalidad.setText("Nacionalidad");
-        lbOtro.add(lbNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        PRegUsuario.add(lbNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
-        panelContenido.add(lbOtro, "panelUsuario");
+        panelContenido.add(PRegUsuario, "panelUsuario");
 
         PRegProfesional.setBackground(new java.awt.Color(0, 0, 0));
         PRegProfesional.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3247,7 +3247,6 @@ public class GUI extends javax.swing.JFrame {
         btnAmpliarInformacion.setFont(cf.MyFont(0, 20f));
         btnAmpliarInformacion.setForeground(new java.awt.Color(255, 255, 255));
         btnAmpliarInformacion.setText("Ampliar");
-        btnAmpliarInformacion.setActionCommand("Ampliar");
         btnAmpliarInformacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAmpliarInformacionActionPerformed(evt);
@@ -3607,7 +3606,7 @@ public class GUI extends javax.swing.JFrame {
                 jListUsuariosMouseClicked(evt);
             }
         });
-        jScrollPane25.setViewportView(jListUsuarios);
+        jScrollPane27.setViewportView(jListUsuarios);
 
         jScrollPane26.setViewportView(jListHistoriales);
 
@@ -3625,7 +3624,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane27, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane26, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3643,7 +3642,7 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PHistorialesIMCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane25, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                    .addComponent(jScrollPane27, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
                     .addComponent(jScrollPane26))
                 .addContainerGap(193, Short.MAX_VALUE))
         );
@@ -5594,6 +5593,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel PPlanAlimentacionProfesional;
     private javax.swing.JPanel PRegAlimentosProfesional;
     private javax.swing.JPanel PRegProfesional;
+    private javax.swing.JPanel PRegUsuario;
     private javax.swing.JPanel PSolicitarPlanAlimentacionUsuario;
     private javax.swing.JPanel PTablaPlanesAlimentacionSolicitados;
     private javax.swing.JComboBox<String> boxAlimentoConsumidoUsuario;
@@ -5661,8 +5661,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelRegistroIMC;
     private javax.swing.JLayeredPane jLayPreferencias;
     private javax.swing.JList<String> jListHistorialIMC;
-    private javax.swing.JList<String> jListPreferencias;
     private javax.swing.JList<String> jListHistoriales;
+    private javax.swing.JList<String> jListPreferencias;
     private javax.swing.JList<String> jListUsuarios;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
@@ -5684,6 +5684,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane24;
     private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane26;
+    private javax.swing.JScrollPane jScrollPane27;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5808,7 +5809,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lbNombreInicSecError;
     private javax.swing.JLabel lbNombreProf;
     private javax.swing.JLabel lbOtra;
-    private javax.swing.JPanel lbOtro;
     private javax.swing.JLabel lbPesoPlanAlimentacionError;
     private javax.swing.JLabel lbPlanAlimentacionUsuario;
     private javax.swing.JLabel lbPlanAlimentacionUsuario1;
