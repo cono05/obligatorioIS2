@@ -40,7 +40,8 @@ public class Sistema extends Observable implements Serializable {
         this.getListaUsuarios().add(usuario);
     }
 
-    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, boolean[] preferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
+    // public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, boolean[] preferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
+    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, ArrayList<Preferencia> listaPreferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
 
         boolean existeApellido = false;
         boolean usuarioRegistrado = false;
@@ -64,7 +65,8 @@ public class Sistema extends Observable implements Serializable {
 
             usuario.setNombres(nombre);
             usuario.setApellidos(apellido);
-            usuario.setPreferencias(preferencias);
+            // usuario.setPreferencias(preferencias);
+            usuario.setListaPreferencias(listaPreferencias);
             usuario.setNacionalidad(nacionalidad);
             usuario.setRestricciones(restricciones);
             usuario.setNacimiento(nacimiento);

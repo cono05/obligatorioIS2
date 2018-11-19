@@ -6,12 +6,14 @@ import domain.Enums;
 import domain.EstadoSanitario;
 import domain.ParProfesionalConsulta;
 import domain.PlanAlimentacion;
+import domain.Preferencia;
 import domain.Profesional;
 import domain.Sistema;
 import domain.Usuario;
 import fuentes.CustomFont;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.BufferedOutputStream;
@@ -59,6 +61,7 @@ public class GUI extends javax.swing.JFrame {
             pBYaEstoyReg.setVisible(false);
         }
 
+        jLayPreferencias.setVisible(false);
     }
 
     public void cargarBoxPaisesRegProfUsuarioYRol() {
@@ -586,8 +589,15 @@ public class GUI extends javax.swing.JFrame {
         checkboxPrefLacteos.setSelected(false);
         checkboxPrefFrutas.setSelected(false);
         checkboxPrefVerduras.setSelected(false);
-        checkboxPrefOtros.setSelected(false);
+        // checkboxPrefOtros.setSelected(false);
 
+        jListPreferencias.removeAll();
+        String[] listaAux = new String[0];
+        jListPreferencias.setListData(listaAux);
+        jListPreferencias.removeAll();
+        txtOtra.setText("");
+        jLayPreferencias.setVisible(false);
+                
         checkboxResSalado.setSelected(false);
         checkboxResDulce.setSelected(false);
         checkboxResLacteos.setSelected(false);
@@ -908,27 +918,19 @@ public class GUI extends javax.swing.JFrame {
         jScrollPane17 = new javax.swing.JScrollPane();
         txtRespuestaUsuarioConsultaUsuario = new javax.swing.JTextArea();
         lbNombre13 = new javax.swing.JLabel();
-        PRegUsuario = new javax.swing.JPanel();
+        lbOtro = new javax.swing.JPanel();
         lbRegistroUsuario = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        lbNombre = new javax.swing.JLabel();
         lbApellido = new javax.swing.JLabel();
         txtApellido = new javax.swing.JTextField();
         boxNacionalidadUsuario = new javax.swing.JComboBox<>();
-        lbNacionalidad = new javax.swing.JLabel();
         lbNacimiento = new javax.swing.JLabel();
         lbPreferencias = new javax.swing.JLabel();
         checkboxResOtros = new javax.swing.JCheckBox();
         checkboxResCarnesRojas = new javax.swing.JCheckBox();
-        checkboxPrefLacteos = new javax.swing.JCheckBox();
-        checkboxPrefFrutas = new javax.swing.JCheckBox();
-        checkboxPrefVerduras = new javax.swing.JCheckBox();
         lbDescripcion = new javax.swing.JLabel();
         checkboxResSalado = new javax.swing.JCheckBox();
         checkboxResDulce = new javax.swing.JCheckBox();
         checkboxResLacteos = new javax.swing.JCheckBox();
-        checkboxPrefOtros = new javax.swing.JCheckBox();
-        checkboxPrefCarnes = new javax.swing.JCheckBox();
         lbRestricciones = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDescripcionUsuario = new javax.swing.JTextArea();
@@ -946,6 +948,21 @@ public class GUI extends javax.swing.JFrame {
         btnEditarUsuario = new javax.swing.JButton();
         lbCheckRegistroUsuarioExitoso = new javax.swing.JLabel();
         lbCheckRegistroUsuarioRepetido = new javax.swing.JLabel();
+        jScrollPane25 = new javax.swing.JScrollPane();
+        jListPreferencias = new javax.swing.JList<>();
+        txtNombre = new javax.swing.JTextField();
+        lbNombre = new javax.swing.JLabel();
+        btnIngresar = new javax.swing.JButton();
+        btnQuitar = new javax.swing.JButton();
+        jLayPreferencias = new javax.swing.JLayeredPane();
+        checkboxPrefCarnes = new javax.swing.JCheckBox();
+        checkboxPrefLacteos = new javax.swing.JCheckBox();
+        checkboxPrefFrutas = new javax.swing.JCheckBox();
+        checkboxPrefVerduras = new javax.swing.JCheckBox();
+        txtOtra = new javax.swing.JTextField();
+        btnAceptar = new javax.swing.JButton();
+        lbOtra = new javax.swing.JLabel();
+        lbNacionalidad = new javax.swing.JLabel();
         PRegProfesional = new javax.swing.JPanel();
         lbRegistroProfesional = new javax.swing.JLabel();
         lbAvatarProf = new javax.swing.JLabel();
@@ -1456,7 +1473,7 @@ public class GUI extends javax.swing.JFrame {
         );
         pBYaSalirUsuarioLayout.setVerticalGroup(
             pBYaSalirUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbYaEstoyReg1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+            .addComponent(lbYaEstoyReg1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         panelBotonesUsuario.add(pBYaSalirUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 450, 270, 50));
@@ -2046,31 +2063,18 @@ public class GUI extends javax.swing.JFrame {
         panelContenido.add(PConsultaProfUsuario, "panelConsultaProf");
         PConsultaProfUsuario.getAccessibleContext().setAccessibleDescription("");
 
-        PRegUsuario.setBackground(new java.awt.Color(0, 0, 0));
-        PRegUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        lbOtro.setBackground(new java.awt.Color(0, 0, 0));
+        lbOtro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbRegistroUsuario.setFont(cf.MyFont(1, 30f));
         lbRegistroUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lbRegistroUsuario.setText("Registrar Usuario");
-        PRegUsuario.add(lbRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 40));
-
-        txtNombre.setFont(cf.MyFont(0, 20f));
-        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtNombreKeyTyped(evt);
-            }
-        });
-        PRegUsuario.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 230, 32));
-
-        lbNombre.setFont(cf.MyFont(0, 20f));
-        lbNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lbNombre.setText("Nombres");
-        PRegUsuario.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+        lbOtro.add(lbRegistroUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 330, 40));
 
         lbApellido.setFont(cf.MyFont(0, 20f));
         lbApellido.setForeground(new java.awt.Color(255, 255, 255));
         lbApellido.setText("Apellidos");
-        PRegUsuario.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
+        lbOtro.add(lbApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 70, -1, -1));
 
         txtApellido.setFont(cf.MyFont(0, 20f));
         txtApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -2083,25 +2087,20 @@ public class GUI extends javax.swing.JFrame {
                 txtApellidoKeyTyped(evt);
             }
         });
-        PRegUsuario.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 240, 32));
+        lbOtro.add(txtApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 100, 240, 32));
 
         boxNacionalidadUsuario.setFont(cf.MyFont(0, 20f));
-        PRegUsuario.add(boxNacionalidadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
-
-        lbNacionalidad.setFont(cf.MyFont(0, 20f));
-        lbNacionalidad.setForeground(new java.awt.Color(255, 255, 255));
-        lbNacionalidad.setText("Nacionalidad");
-        PRegUsuario.add(lbNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+        lbOtro.add(boxNacionalidadUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 230, 30));
 
         lbNacimiento.setFont(cf.MyFont(0, 20f));
         lbNacimiento.setForeground(new java.awt.Color(255, 255, 255));
         lbNacimiento.setText("Nacimiento");
-        PRegUsuario.add(lbNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
+        lbOtro.add(lbNacimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 150, -1, -1));
 
         lbPreferencias.setFont(cf.MyFont(0, 20f));
         lbPreferencias.setForeground(new java.awt.Color(255, 255, 255));
         lbPreferencias.setText("Preferencias");
-        PRegUsuario.add(lbPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+        lbOtro.add(lbPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         checkboxResOtros.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResOtros.setFont(cf.MyFont(0, 16f));
@@ -2112,7 +2111,7 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResOtrosActionPerformed(evt);
             }
         });
-        PRegUsuario.add(checkboxResOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 410, -1, -1));
+        lbOtro.add(checkboxResOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 400, -1, -1));
 
         checkboxResCarnesRojas.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResCarnesRojas.setFont(cf.MyFont(0, 16f));
@@ -2123,30 +2122,12 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResCarnesRojasActionPerformed(evt);
             }
         });
-        PRegUsuario.add(checkboxResCarnesRojas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, -1, -1));
-
-        checkboxPrefLacteos.setBackground(new java.awt.Color(0, 0, 0));
-        checkboxPrefLacteos.setFont(cf.MyFont(0, 16f));
-        checkboxPrefLacteos.setForeground(new java.awt.Color(255, 255, 255));
-        checkboxPrefLacteos.setText("Lacteos");
-        PRegUsuario.add(checkboxPrefLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
-
-        checkboxPrefFrutas.setBackground(new java.awt.Color(0, 0, 0));
-        checkboxPrefFrutas.setFont(cf.MyFont(0, 16f));
-        checkboxPrefFrutas.setForeground(new java.awt.Color(255, 255, 255));
-        checkboxPrefFrutas.setText("Frutas");
-        PRegUsuario.add(checkboxPrefFrutas, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
-
-        checkboxPrefVerduras.setBackground(new java.awt.Color(0, 0, 0));
-        checkboxPrefVerduras.setFont(cf.MyFont(0, 16f));
-        checkboxPrefVerduras.setForeground(new java.awt.Color(255, 255, 255));
-        checkboxPrefVerduras.setText("Verduras");
-        PRegUsuario.add(checkboxPrefVerduras, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+        lbOtro.add(checkboxResCarnesRojas, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, -1, -1));
 
         lbDescripcion.setFont(cf.MyFont(0, 20f));
         lbDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         lbDescripcion.setText("Descripción");
-        PRegUsuario.add(lbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, -1));
+        lbOtro.add(lbDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
 
         checkboxResSalado.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResSalado.setFont(cf.MyFont(0, 16f));
@@ -2157,53 +2138,31 @@ public class GUI extends javax.swing.JFrame {
                 checkboxResSaladoActionPerformed(evt);
             }
         });
-        PRegUsuario.add(checkboxResSalado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, -1, -1));
+        lbOtro.add(checkboxResSalado, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, -1, -1));
 
         checkboxResDulce.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResDulce.setFont(cf.MyFont(0, 16f));
         checkboxResDulce.setForeground(new java.awt.Color(255, 255, 255));
         checkboxResDulce.setText("Dulce");
-        PRegUsuario.add(checkboxResDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, -1, -1));
+        lbOtro.add(checkboxResDulce, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, -1, -1));
 
         checkboxResLacteos.setBackground(new java.awt.Color(0, 0, 0));
         checkboxResLacteos.setFont(cf.MyFont(0, 16f));
         checkboxResLacteos.setForeground(new java.awt.Color(255, 255, 255));
         checkboxResLacteos.setText("Lacteos");
-        PRegUsuario.add(checkboxResLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
-
-        checkboxPrefOtros.setBackground(new java.awt.Color(0, 0, 0));
-        checkboxPrefOtros.setFont(cf.MyFont(0, 16f));
-        checkboxPrefOtros.setForeground(new java.awt.Color(255, 255, 255));
-        checkboxPrefOtros.setText("Otros");
-        checkboxPrefOtros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxPrefOtrosActionPerformed(evt);
-            }
-        });
-        PRegUsuario.add(checkboxPrefOtros, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, -1, -1));
-
-        checkboxPrefCarnes.setBackground(new java.awt.Color(0, 0, 0));
-        checkboxPrefCarnes.setFont(cf.MyFont(0, 16f));
-        checkboxPrefCarnes.setForeground(new java.awt.Color(255, 255, 255));
-        checkboxPrefCarnes.setText("Carnes");
-        checkboxPrefCarnes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkboxPrefCarnesActionPerformed(evt);
-            }
-        });
-        PRegUsuario.add(checkboxPrefCarnes, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, -1, -1));
+        lbOtro.add(checkboxResLacteos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, -1));
 
         lbRestricciones.setFont(cf.MyFont(0, 20f));
         lbRestricciones.setForeground(new java.awt.Color(255, 255, 255));
         lbRestricciones.setText("Restricciones");
-        PRegUsuario.add(lbRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, -1, -1));
+        lbOtro.add(lbRestricciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, -1, -1));
 
         txtDescripcionUsuario.setColumns(20);
         txtDescripcionUsuario.setFont(cf.MyFont(0, 16f));
         txtDescripcionUsuario.setRows(5);
         jScrollPane1.setViewportView(txtDescripcionUsuario);
 
-        PRegUsuario.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 340, 100));
+        lbOtro.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 340, 100));
 
         lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar.png"))); // NOI18N
         lbAvatar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -2212,7 +2171,7 @@ public class GUI extends javax.swing.JFrame {
                 lbAvatarMouseClicked(evt);
             }
         });
-        PRegUsuario.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, 140));
+        lbOtro.add(lbAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 120, 140));
 
         btnRegistrarUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnRegistrarUsuario.setFont(cf.MyFont(0, 20f));
@@ -2223,36 +2182,36 @@ public class GUI extends javax.swing.JFrame {
                 btnRegistrarUsuarioActionPerformed(evt);
             }
         });
-        PRegUsuario.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, 120, 30));
+        lbOtro.add(btnRegistrarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
 
         lbCheckApellidoErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        PRegUsuario.add(lbCheckApellidoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
+        lbOtro.add(lbCheckApellidoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
 
         lbCheckDchNacimientoErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        PRegUsuario.add(lbCheckDchNacimientoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
+        lbOtro.add(lbCheckDchNacimientoErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
 
         lbCheckNombreErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        PRegUsuario.add(lbCheckNombreErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
+        lbOtro.add(lbCheckNombreErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
 
         boxCheckNacionalidadErrorUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/error.png"))); // NOI18N
-        PRegUsuario.add(boxCheckNacionalidadErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
+        lbOtro.add(boxCheckNacionalidadErrorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
 
         lbCheckApellidoBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        PRegUsuario.add(lbCheckApellidoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
+        lbOtro.add(lbCheckApellidoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 100, -1, 30));
 
         lbCheckNombreBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        PRegUsuario.add(lbCheckNombreBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
+        lbOtro.add(lbCheckNombreBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 100, -1, 30));
 
         boxCheckNacionalidadBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        PRegUsuario.add(boxCheckNacionalidadBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
+        lbOtro.add(boxCheckNacionalidadBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, -1, 30));
 
         lbCheckDchNacimientoBienUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/checked.png"))); // NOI18N
-        PRegUsuario.add(lbCheckDchNacimientoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
+        lbOtro.add(lbCheckDchNacimientoBienUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 180, -1, 30));
 
         dcNacimientoUsuario.setFont(cf.MyFont(0, 20f));
         dcNacimientoUsuario.setMaxSelectableDate(new Date());
         dcNacimientoUsuario.setMinSelectableDate(new java.util.Date(-1735676116000L));
-        PRegUsuario.add(dcNacimientoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 240, 30));
+        lbOtro.add(dcNacimientoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 180, 240, 30));
 
         btnEditarUsuario.setBackground(new java.awt.Color(153, 153, 153));
         btnEditarUsuario.setFont(cf.MyFont(0, 20f));
@@ -2263,17 +2222,171 @@ public class GUI extends javax.swing.JFrame {
                 btnEditarUsuarioActionPerformed(evt);
             }
         });
-        PRegUsuario.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, 120, 30));
+        lbOtro.add(btnEditarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 420, 120, 30));
 
         lbCheckRegistroUsuarioExitoso.setForeground(new java.awt.Color(51, 204, 0));
         lbCheckRegistroUsuarioExitoso.setText("<html>*Registro exitoso</html>");
-        PRegUsuario.add(lbCheckRegistroUsuarioExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
+        lbOtro.add(lbCheckRegistroUsuarioExitoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
         lbCheckRegistroUsuarioRepetido.setForeground(new java.awt.Color(255, 0, 0));
         lbCheckRegistroUsuarioRepetido.setText("<html>*Parece que el usuario que <br> intenta registrar ya existe</html>");
-        PRegUsuario.add(lbCheckRegistroUsuarioRepetido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 420, -1, -1));
+        lbOtro.add(lbCheckRegistroUsuarioRepetido, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, -1, -1));
 
-        panelContenido.add(PRegUsuario, "panelUsuario");
+        jScrollPane25.setViewportView(jListPreferencias);
+
+        lbOtro.add(jScrollPane25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 130, 150));
+
+        txtNombre.setFont(cf.MyFont(0, 20f));
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        lbOtro.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 230, 32));
+
+        lbNombre.setFont(cf.MyFont(0, 20f));
+        lbNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lbNombre.setText("Nombres");
+        lbOtro.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 70, -1, -1));
+
+        btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
+        lbOtro.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, -1, -1));
+
+        btnQuitar.setText("Quitar");
+        btnQuitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuitarActionPerformed(evt);
+            }
+        });
+        lbOtro.add(btnQuitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, -1, -1));
+
+        jLayPreferencias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        checkboxPrefCarnes.setBackground(new java.awt.Color(0, 0, 0));
+        checkboxPrefCarnes.setFont(cf.MyFont(0, 16f));
+        checkboxPrefCarnes.setForeground(new java.awt.Color(255, 255, 255));
+        checkboxPrefCarnes.setText("Carnes");
+        checkboxPrefCarnes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPrefCarnesActionPerformed(evt);
+            }
+        });
+
+        checkboxPrefLacteos.setBackground(new java.awt.Color(0, 0, 0));
+        checkboxPrefLacteos.setFont(cf.MyFont(0, 16f));
+        checkboxPrefLacteos.setForeground(new java.awt.Color(255, 255, 255));
+        checkboxPrefLacteos.setText("Lacteos");
+        checkboxPrefLacteos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPrefLacteosActionPerformed(evt);
+            }
+        });
+
+        checkboxPrefFrutas.setBackground(new java.awt.Color(0, 0, 0));
+        checkboxPrefFrutas.setFont(cf.MyFont(0, 16f));
+        checkboxPrefFrutas.setForeground(new java.awt.Color(255, 255, 255));
+        checkboxPrefFrutas.setText("Frutas");
+        checkboxPrefFrutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPrefFrutasActionPerformed(evt);
+            }
+        });
+
+        checkboxPrefVerduras.setBackground(new java.awt.Color(0, 0, 0));
+        checkboxPrefVerduras.setFont(cf.MyFont(0, 16f));
+        checkboxPrefVerduras.setForeground(new java.awt.Color(255, 255, 255));
+        checkboxPrefVerduras.setText("Verduras");
+        checkboxPrefVerduras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkboxPrefVerdurasActionPerformed(evt);
+            }
+        });
+
+        txtOtra.setFont(cf.MyFont(0, 20f));
+        txtOtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOtraActionPerformed(evt);
+            }
+        });
+        txtOtra.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtOtraKeyTyped(evt);
+            }
+        });
+
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        lbOtra.setFont(cf.MyFont(0, 20f));
+        lbOtra.setForeground(new java.awt.Color(255, 255, 255));
+        lbOtra.setText("Otra");
+
+        jLayPreferencias.setLayer(checkboxPrefCarnes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(checkboxPrefLacteos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(checkboxPrefFrutas, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(checkboxPrefVerduras, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(txtOtra, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(btnAceptar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayPreferencias.setLayer(lbOtra, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayPreferenciasLayout = new javax.swing.GroupLayout(jLayPreferencias);
+        jLayPreferencias.setLayout(jLayPreferenciasLayout);
+        jLayPreferenciasLayout.setHorizontalGroup(
+            jLayPreferenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayPreferenciasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(checkboxPrefCarnes)
+                .addGap(10, 10, 10)
+                .addComponent(checkboxPrefLacteos)
+                .addGap(10, 10, 10)
+                .addComponent(checkboxPrefFrutas)
+                .addGap(10, 10, 10)
+                .addComponent(checkboxPrefVerduras)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbOtra)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtOtra, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAceptar)
+                .addContainerGap(124, Short.MAX_VALUE))
+        );
+        jLayPreferenciasLayout.setVerticalGroup(
+            jLayPreferenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayPreferenciasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jLayPreferenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(checkboxPrefCarnes)
+                    .addComponent(checkboxPrefLacteos)
+                    .addComponent(checkboxPrefFrutas)
+                    .addComponent(checkboxPrefVerduras)
+                    .addComponent(lbOtra)
+                    .addComponent(txtOtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAceptar))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        lbOtro.add(jLayPreferencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 470, 640, 50));
+
+        lbNacionalidad.setFont(cf.MyFont(0, 20f));
+        lbNacionalidad.setForeground(new java.awt.Color(255, 255, 255));
+        lbNacionalidad.setText("Nacionalidad");
+        lbOtro.add(lbNacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
+
+        panelContenido.add(lbOtro, "panelUsuario");
 
         PRegProfesional.setBackground(new java.awt.Color(0, 0, 0));
         PRegProfesional.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -3543,7 +3656,7 @@ public class GUI extends javax.swing.JFrame {
         setExtendedState(JFrame.CROSSHAIR_CURSOR);
     }//GEN-LAST:event_lbMinimizarMouseClicked
 
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+    private void txtOtraKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOtraKeyTyped
         char c = evt.getKeyChar();
 
         if (Character.isDigit(c)) {
@@ -3552,7 +3665,7 @@ public class GUI extends javax.swing.JFrame {
             evt.consume();
 
         }
-    }//GEN-LAST:event_txtNombreKeyTyped
+    }//GEN-LAST:event_txtOtraKeyTyped
 
     private void checkboxResCarnesRojasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxResCarnesRojasActionPerformed
         // TODO add your handling code here:
@@ -3565,10 +3678,6 @@ public class GUI extends javax.swing.JFrame {
     private void checkboxResSaladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxResSaladoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_checkboxResSaladoActionPerformed
-
-    private void checkboxPrefOtrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefOtrosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_checkboxPrefOtrosActionPerformed
 
     private void checkboxPrefCarnesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefCarnesActionPerformed
         // TODO add your handling code here:
@@ -3597,8 +3706,9 @@ public class GUI extends javax.swing.JFrame {
         String nacionalidad;
         String descripcion;
         Icon avatar;
-
-        boolean[] preferencias = new boolean[5];
+        
+        // boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
         Date nacimiento;
 
@@ -3612,6 +3722,7 @@ public class GUI extends javax.swing.JFrame {
             avatar = lbAvatar.getIcon();
 
             //Preferencias
+            /*
             if (checkboxPrefCarnes.isSelected()) {
                 preferencias[0] = true;
             }
@@ -3627,6 +3738,14 @@ public class GUI extends javax.swing.JFrame {
             if (checkboxPrefOtros.isSelected()) {
                 preferencias[4] = true;
             }
+            */
+            for (int i = 0; i < jListPreferencias.getModel().getSize(); i++) {
+                String nombrePreferencia = String.valueOf(jListPreferencias.getModel().getElementAt(i));
+                Preferencia nueva = new Preferencia();
+                nueva.setNombre(nombrePreferencia);
+                listaPreferencias.add(nueva);
+            }
+            
             //Restricciones
             if (checkboxResSalado.isSelected()) {
                 restricciones[0] = true;
@@ -3646,8 +3765,9 @@ public class GUI extends javax.swing.JFrame {
 
             Icon icono = lbAvatar.getIcon();
             lbAvatarInicSecUsuario.setIcon(profesional.getAvatar());
-            boolean registroExitoso = sistema.registrarUsuario(nombre, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, icono);
-
+            // boolean registroExitoso = sistema.registrarUsuario(nombre, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, icono);
+            boolean registroExitoso = sistema.registrarUsuario(nombre, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, icono);
+            
             if (registroExitoso) {
                 lbCheckRegistroUsuarioExitoso.setVisible(true);
                 pBYaEstoyReg.setVisible(true);
@@ -4232,6 +4352,15 @@ public class GUI extends javax.swing.JFrame {
         txtDescripcionUsuario.setText(usuario.getDescripcion());
 
         //Preferencias
+         ArrayList<Preferencia> listaPreferencias = usuario.getListaPreferencias();  
+        String[] listaAux = new String[listaPreferencias.size()];
+        for(int i = 0; i < listaPreferencias.size() ; i++){
+            listaAux[i] = listaPreferencias.get(i).getNombre();
+        }
+        jListPreferencias.removeAll();
+        jListPreferencias.setListData(listaAux);
+        
+        /*
         if (usuario.getPreferencias()[0]) {
             checkboxPrefCarnes.setSelected(true);
         }
@@ -4247,10 +4376,13 @@ public class GUI extends javax.swing.JFrame {
         if (usuario.getPreferencias()[3]) {
             checkboxPrefVerduras.setSelected(true);
         }
-
+        */
+        
+        /*
         if (usuario.getPreferencias()[4]) {
             checkboxPrefOtros.setSelected(true);
         }
+        */
 
         //Restricciones
         if (usuario.getRestricciones()[0]) {
@@ -4675,7 +4807,8 @@ public class GUI extends javax.swing.JFrame {
         String nacionalidad;
         String descripcion;
 
-        boolean[] preferencias = new boolean[5];
+        // boolean[] preferencias = new boolean[5];
+        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
         boolean[] restricciones = new boolean[5];
         Date nacimiento;
 
@@ -4688,6 +4821,7 @@ public class GUI extends javax.swing.JFrame {
             descripcion = txtDescripcionUsuario.getText();
 
             //Preferencias
+            /*
             if (checkboxPrefCarnes.isSelected()) {
                 preferencias[0] = true;
             }
@@ -4700,9 +4834,19 @@ public class GUI extends javax.swing.JFrame {
             if (checkboxPrefVerduras.isSelected()) {
                 preferencias[3] = true;
             }
+            */
+            /*
             if (checkboxPrefOtros.isSelected()) {
                 preferencias[4] = true;
             }
+            */
+            for (int i = 0; i < jListPreferencias.getModel().getSize(); i++) {
+                String nombrePreferencia = String.valueOf(jListPreferencias.getModel().getElementAt(i));
+                Preferencia nueva = new Preferencia();
+                nueva.setNombre(nombrePreferencia);
+                listaPreferencias.add(nueva);
+            }
+                        
             //Restricciones
             if (checkboxResSalado.isSelected()) {
                 restricciones[0] = true;
@@ -4725,7 +4869,8 @@ public class GUI extends javax.swing.JFrame {
             usuario.setNacionalidad(nacionalidad);
             usuario.setNacimiento(nacimiento);
             usuario.setDescripcion(descripcion);
-            usuario.setPreferencias(preferencias);
+            // usuario.setPreferencias(preferencias);
+            usuario.setListaPreferencias(listaPreferencias);
             usuario.setRestricciones(restricciones);
             usuario.setAvatar(lbAvatar.getIcon());
             lbAvatarInicSecUsuario.setIcon(lbAvatar.getIcon());
@@ -5134,6 +5279,147 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);      
     }//GEN-LAST:event_formWindowClosing
 
+    private void checkboxPrefVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefVerdurasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkboxPrefVerdurasActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        char c = evt.getKeyChar();
+
+        if (Character.isDigit(c)) {
+            getToolkit().beep();
+
+            evt.consume();
+
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void checkboxPrefLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefLacteosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkboxPrefLacteosActionPerformed
+
+    private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
+        int j = jListPreferencias.getSelectedIndex();
+        if (j >= 0){
+            ArrayList<String> lista = new ArrayList<String>();
+            int largo = jListPreferencias.getModel().getSize();
+            for (int i = 0; i < largo; i++) {
+                lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));
+            }
+            lista.remove(j);
+
+            String[] listaAux = new String[lista.size()];
+            for(int i = 0; i < lista.size() ; i++){
+                listaAux[i] = lista.get(i);
+            }
+            jListPreferencias.removeAll();
+            jListPreferencias.setListData(listaAux);
+        }
+    }//GEN-LAST:event_btnQuitarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        ArrayList<String> lista = new ArrayList<String>();
+        int largo = jListPreferencias.getModel().getSize();
+        for (int i = 0; i < largo; i++) {
+            lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));
+        }
+
+        //Preferencias
+        if (checkboxPrefCarnes.isSelected()) {
+            if (!lista.contains("Carnes")) {
+                lista.add("Carnes");
+            }
+        } else {
+            if (lista.contains("Carnes")) {
+                lista.remove("Carnes");
+            }
+        }
+        if (checkboxPrefLacteos.isSelected()) {
+            if (!lista.contains("Lacteos")) {
+                lista.add("Lacteos");
+            }
+        } else {
+            if (lista.contains("Lacteos")) {
+                lista.remove("Lacteos");
+            }
+        }
+        if (checkboxPrefFrutas.isSelected()) {
+            if (!lista.contains("Frutas")) {
+                lista.add("Frutas");
+            }
+        } else {
+            if (lista.contains("Frutas")) {
+                lista.remove("Frutas");
+            }
+        }
+        if (checkboxPrefVerduras.isSelected()) {
+            if (!lista.contains("Verduras")) {
+                lista.add("Verduras");
+            }
+        } else {
+            if (lista.contains("Verduras")) {
+                lista.remove("Verduras");
+            }
+        }
+        
+        String otra = txtOtra.getText();
+        if (validarCampoTxtNoEsVacio(otra)) {
+            lista.add(otra);
+        }
+
+        String[] listaAux = new String[lista.size()];
+        for(int i = 0; i < lista.size() ; i++){
+            listaAux[i] = lista.get(i);
+        }
+        jListPreferencias.removeAll();
+        jListPreferencias.setListData(listaAux);
+        txtOtra.setText("");
+        jLayPreferencias.setVisible(false);
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void checkboxPrefFrutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefFrutasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkboxPrefFrutasActionPerformed
+
+    private void txtOtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOtraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOtraActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        ArrayList<String> lista = new ArrayList<String>();
+        int largo = jListPreferencias.getModel().getSize();
+        for (int i = 0; i < largo; i++) {
+            lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));
+        }
+        
+        //Preferencias
+        if (lista.contains("Carnes"))
+            checkboxPrefCarnes.setSelected(true);
+        else
+            checkboxPrefCarnes.setSelected(false);
+        
+        if (lista.contains("Lacteos"))
+            checkboxPrefLacteos.setSelected(true);
+        else
+            checkboxPrefLacteos.setSelected(false);
+
+        if (lista.contains("Frutas"))
+            checkboxPrefFrutas.setSelected(true);
+        else
+            checkboxPrefFrutas.setSelected(false);
+         
+        if (lista.contains("Verduras"))
+            checkboxPrefVerduras.setSelected(true);
+        else
+            checkboxPrefVerduras.setSelected(false);
+        
+        jLayPreferencias.setVisible(true);
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5181,7 +5467,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel PPlanAlimentacionProfesional;
     private javax.swing.JPanel PRegAlimentosProfesional;
     private javax.swing.JPanel PRegProfesional;
-    private javax.swing.JPanel PRegUsuario;
     private javax.swing.JPanel PSolicitarPlanAlimentacionUsuario;
     private javax.swing.JPanel PTablaPlanesAlimentacionSolicitados;
     private javax.swing.JComboBox<String> boxAlimentoConsumidoUsuario;
@@ -5195,6 +5480,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> boxNombreProfesionalSolicitud;
     private javax.swing.JComboBox<String> boxPaisTitProf;
     private javax.swing.JComboBox<String> boxRolInicSec;
+    private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAgregarAlimentoUsuario;
     private javax.swing.JButton btnAmpliarInformacion;
     private javax.swing.JButton btnAniadir;
@@ -5204,7 +5490,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JButton btnEnviarPlan;
     private javax.swing.JButton btnEnviarPlan2;
     private javax.swing.JButton btnGuardarUsuario1;
+    private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnInicSec;
+    private javax.swing.JButton btnQuitar;
     private javax.swing.JButton btnRegistrarProfesional;
     private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JButton btnResponderConsulta;
@@ -5218,7 +5506,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkboxPrefCarnes;
     private javax.swing.JCheckBox checkboxPrefFrutas;
     private javax.swing.JCheckBox checkboxPrefLacteos;
-    private javax.swing.JCheckBox checkboxPrefOtros;
     private javax.swing.JCheckBox checkboxPrefVerduras;
     private javax.swing.JCheckBox checkboxResCarnesRojas;
     private javax.swing.JCheckBox checkboxResDulce;
@@ -5242,7 +5529,9 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelRegistroIMC;
+    private javax.swing.JLayeredPane jLayPreferencias;
     private javax.swing.JList<String> jListHistorialIMC;
+    private javax.swing.JList<String> jListPreferencias;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
@@ -5261,6 +5550,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane22;
     private javax.swing.JScrollPane jScrollPane23;
     private javax.swing.JScrollPane jScrollPane24;
+    private javax.swing.JScrollPane jScrollPane25;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -5384,6 +5674,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lbNombreAlimentos4;
     private javax.swing.JLabel lbNombreInicSecError;
     private javax.swing.JLabel lbNombreProf;
+    private javax.swing.JLabel lbOtra;
+    private javax.swing.JPanel lbOtro;
     private javax.swing.JLabel lbPesoPlanAlimentacionError;
     private javax.swing.JLabel lbPlanAlimentacionUsuario;
     private javax.swing.JLabel lbPlanAlimentacionUsuario1;
@@ -5484,6 +5776,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreAlimentoPlanAliProf;
     private javax.swing.JTextField txtNombreAlimentos;
     private javax.swing.JTextField txtNombreProf;
+    private javax.swing.JTextField txtOtra;
     private javax.swing.JTextField txtPesoSolicitud;
     private javax.swing.JTextArea txtPreguntaUsuarioConsultaUsuario;
     private javax.swing.JTextField txtProporcionAntioxidante;

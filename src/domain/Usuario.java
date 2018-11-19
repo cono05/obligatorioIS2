@@ -11,6 +11,7 @@ public class Usuario extends Persona implements Serializable {
     private String descripcion;
     //carnes lacteos frutas verduras otros
     private boolean[] preferencias = new boolean[5];
+    private ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
     //salado dulce lacteos carnes rojas otros
     private boolean[] restricciones = new boolean[5];
     private ArrayList<AlimentoIngerido> alimentosIngeridos = new ArrayList<AlimentoIngerido>();
@@ -49,6 +50,14 @@ public class Usuario extends Persona implements Serializable {
         this.preferencias = preferencias;
     }
 
+    public ArrayList<Preferencia> getListaPreferencias() {
+        return listaPreferencias;
+    }
+
+    public void setListaPreferencias(ArrayList<Preferencia> listaPreferencias) {
+        this.listaPreferencias = listaPreferencias;
+    }
+    
     public boolean[] getRestricciones() {
         return restricciones;
     }
