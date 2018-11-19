@@ -73,8 +73,7 @@ public class SistemaTest {
         String nombres = "";
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
@@ -90,8 +89,7 @@ public class SistemaTest {
         String nombres = "Juan";
         String apellidos = "";
         String nacionalidad = "Uruguay";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
@@ -107,8 +105,7 @@ public class SistemaTest {
         String nombres = "Juan";
         String apellidos = "Medina";
         String nacionalidad = "";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
@@ -124,8 +121,7 @@ public class SistemaTest {
         String nombres = "Juan";
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "";
@@ -139,9 +135,8 @@ public class SistemaTest {
         Sistema unSistema = new Sistema();
         String nombres = "Juan";
         String apellidos = "Medina";
-        String nacionalidad = "Uruguay";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        String nacionalidad = "Uruguay";       
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date fechaNacimiento;
         Calendar cal = Calendar.getInstance();
@@ -165,8 +160,7 @@ public class SistemaTest {
         String nombres = "Juan";
         String apellidos = "Medina";
         String nacionalidad = "Uruguay";
-        boolean preferencias[] = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean restricciones[] = new boolean[5];
         Date nacimiento = new Date();
         String descripcion = "Intolerante a la lactosa";
@@ -456,14 +450,12 @@ public class SistemaTest {
         String apellidos = "";
         String titulo = "Lic. en Nutrición";
         String paisObtencionTitulo = "";
-        Date fecha = new Date();
         Date fechaNacimiento;
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR, 1981);
         cal.set(Calendar.DAY_OF_MONTH, 3);
         cal.set(Calendar.MONTH, 12);
         fechaNacimiento = cal.getTime();
-
         Date fechaGraduacion = new Date();
         unSistema.registrarProfesional(nombres, apellidos, titulo, paisObtencionTitulo, fechaNacimiento, fechaGraduacion, null);
         int resultadoObtenido = unSistema.getListaUsuarios().size();

@@ -9,6 +9,7 @@ import domain.Sistema;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.Icon;
 
 public class UsuarioTest {
@@ -54,9 +55,8 @@ public class UsuarioTest {
         String apellidos = "";
         String nacionalidad = "Uruguay";
         String descripcion = "Intolerante a la lactosa";
-        Date nacimiento = new Date();
-        boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Date nacimiento = new Date();      
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
 
         unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
@@ -76,9 +76,8 @@ public class UsuarioTest {
         String apellidos = "Lopez";
         String nacionalidad = "";
         String descripcion = "Intolerante a la lactosa";
-        Date nacimiento = new Date();
-        boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Date nacimiento = new Date();        
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
 
         unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
@@ -98,11 +97,9 @@ public class UsuarioTest {
         String apellidos = "Lopez";
         String nacionalidad = "Uruguay";
         String descripcion = "";
-        Date nacimiento = new Date();
-        boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Date nacimiento = new Date();        
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
-
         unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);
 
         int resutladoObtenido = unSistema.getListaUsuarios().size();
@@ -120,9 +117,8 @@ public class UsuarioTest {
         String apellidos = "Lopez";
         String nacionalidad = "Uruguay";
         String descripcion = "Intolerante a la lactosa";
-        Date nacimiento = new Date();
-        boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Date nacimiento = new Date();        
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
 
         unSistema.registrarUsuario(nombres, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, null);

@@ -45,23 +45,19 @@ public class ConsultaTest {
         unUsuario.setNacionalidad("Uruguay");
 
         int tamanoInicial = unSistema.getListaUsuarios().size();
-        int resultadoEsperado = tamanoInicial;
-
-        String nombre = "";
+        int resultadoEsperado = tamanoInicial;      
         String descripcion = "Hola quiero que me haga una dieta";
         Usuario usuarioDeConsulta = null;
         Enums.MotivoConsulta motivo = Enums.MotivoConsulta.ALIMENTOSINGERIDOS;
-        unSistema.agregarConsultaProf(nombre, descripcion, usuarioDeConsulta, motivo);
-
+        unSistema.agregarConsultaProf("", descripcion, usuarioDeConsulta, motivo);
         int resutladoObtenido = unSistema.getListaUsuarios().size();
         assertEquals(resultadoEsperado, resutladoObtenido);
     }
 
     @Test
     public void testAgregarConsultaProfDescripcionVacia() {
-        int tamanoInicial = unSistema.getListaUsuarios().size();
+        int tamanoInicial = 0;//unSistema.getListaUsuarios().size();
         int resultadoEsperado = tamanoInicial;
-        String nombre = "";
         String descripcion = "";
         Usuario usuarioDeConsulta = null;
         Enums.MotivoConsulta motivo = Enums.MotivoConsulta.ALIMENTOSINGERIDOS;
@@ -72,7 +68,7 @@ public class ConsultaTest {
 
     @Test
     public void testAgregarConsultaProfCorrecto() {
-        int tamanoInicial = unSistema.getListaUsuarios().size();
+        int tamanoInicial = 0;
         int resultadoEsperado = tamanoInicial;
         String nombre = "";
         String descripcion = "";

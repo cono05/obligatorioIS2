@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -34,29 +35,36 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.TableModel;
+
 
 public class GUI extends javax.swing.JFrame {
 
     /**
      * Creates new form GUI
      */
-    // Sistema sistema = new Sistema();
     Sistema sistema;
     Usuario usuario = new Usuario();
     Profesional profesional = new Profesional();
-
+    private static final String SELECCIONE = "Seleccione...";
+    private static final String PROFESSIONAL = "Profesional";
+    private static final String USSUARIO = "Usuario";
+    private static final String PANELBOTONSINICIO = "panelBotonesInicio";
+    private static final String FECHA = "Fecha";
+    private static final String ALIMENTOS = "Alimentos";
+    private static final String REGISTRARUSUARIO = "Registrar Usuario";
+    private static final String PATHIMAGENAVATAR = "/imagenes/avatar.png";
+    private static final String PANELINICIO = "panelInicio";
+    private static final String OTROS = "Otros";
+     
     public GUI(Sistema sist) {
-        sistema = sist;
-        
+        sistema = sist;        
         initComponents();
         setLocationRelativeTo(null);
         cargarIconoDeVentana();
         limpiarVentanas();
         cargarBoxPaisesRegProfUsuarioYRol();
-
         CardLayout cl = (CardLayout) panelLateral.getLayout();
-        cl.show(panelLateral, "panelBotonesInicio");
+        cl.show(panelLateral, PANELBOTONSINICIO);
         if(!sistema.existenUsuariosRegistrados()){
             pBYaEstoyReg.setVisible(false);
         }
@@ -65,24 +73,24 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void cargarBoxPaisesRegProfUsuarioYRol() {
-        boxNacionalidadUsuario.addItem("Seleccione...");
+        boxNacionalidadUsuario.addItem(SELECCIONE);
         for (int i = 0; i < nacionalidad.length; i++) {
             boxNacionalidadUsuario.addItem(nacionalidad[i]);
         }
 
-        boxPaisTitProf.addItem("Seleccione...");
+        boxPaisTitProf.addItem(SELECCIONE);
         for (int i = 0; i < nacionalidad.length; i++) {
             boxPaisTitProf.addItem(nacionalidad[i]);
         }
 
-        boxRolInicSec.addItem("Seleccione...");
-        boxRolInicSec.addItem("Profesional");
-        boxRolInicSec.addItem("Usuario");
+        boxRolInicSec.addItem(SELECCIONE);
+        boxRolInicSec.addItem(PROFESSIONAL);
+        boxRolInicSec.addItem(USSUARIO);
     }
 
     public void cargarBoxProfesionalesConsultaProfUsuario() {
         boxNombreProfesional.removeAllItems();
-        boxNombreProfesional.addItem("Seleccione...");
+        boxNombreProfesional.addItem(SELECCIONE);
         for (int i = 0; i < sistema.getListaProfesionales().size(); i++) {
             boxNombreProfesional.addItem(sistema.getListaProfesionales().get(i).getNombres() + " " + sistema.getListaProfesionales().get(i).getApellidos());
         }
@@ -113,7 +121,7 @@ public class GUI extends javax.swing.JFrame {
 
     public void mostrarTablaAlimentosIngeridosUsuarios() {
         int largoListaAlimentos = usuario.getAlimentosIngeridos().size();
-        String matrizDatos[][] = new String[largoListaAlimentos][2];
+        String[][] matrizDatos = new String[largoListaAlimentos][2];
 
         for (int i = 0; i < largoListaAlimentos; i++) {
             matrizDatos[i][0] = usuario.getAlimentosIngeridos().get(i).getAlimentoIngeridoUsuario() + "";
@@ -124,7 +132,7 @@ public class GUI extends javax.swing.JFrame {
         tablaAlimentosIngeridosUsuario.setModel(new javax.swing.table.DefaultTableModel(
                 matrizDatos,
                 new String[]{
-                    "Alimentos", "Fecha"
+                    ALIMENTOS, FECHA
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -379,7 +387,7 @@ public class GUI extends javax.swing.JFrame {
     public boolean validarBoxDistintoSeleccione(String seleccion) {
         boolean esCampoValido = false;
 
-        if (!seleccion.equals("Seleccione...")) {
+        if (!seleccion.equals(SELECCIONE)) {
             esCampoValido = true;
         }
 
@@ -417,13 +425,13 @@ public class GUI extends javax.swing.JFrame {
     public boolean validarFormSolicitud() {
         boolean esFormValido = false;
 
-        String profesional = (String) boxNombreProfesionalSolicitud.getSelectedItem();
+        String profesionalSeleccionado = (String) boxNombreProfesionalSolicitud.getSelectedItem();
         String peso = txtPesoSolicitud.getText();
         String altura = txtAlturaSolicitud.getText();
         String horasDeActividad = txtHorasDeActividadSolicitud.getText();
         String detalles = txtDetallesSolicitud.getText();
 
-        if (!profesional.equals("Seleccione...")) {
+        if (!profesionalSeleccionado.equals(SELECCIONE)) {
             lbCkeckBoxProfesionalBienSolicitud.setVisible(true);
             lbCheckBoxProfesionalErrorSolicitud.setVisible(false);
             esFormValido = true;
@@ -500,12 +508,10 @@ public class GUI extends javax.swing.JFrame {
     public boolean validarDatosIMC(){
         boolean retorno = false;
         String peso = txtPesoSolicitud.getText();
-        String altura = txtAlturaSolicitud.getText();
-        
-        if (validarCampoTxtNoEsVacio(altura) && validarCampoTxtNoEsVacio(peso)) {
-            if (validarAltura(Integer.parseInt(altura)) && validarPeso(Integer.parseInt(peso))) {
+        String altura = txtAlturaSolicitud.getText();        
+        if (validarCampoTxtNoEsVacio(altura) && validarCampoTxtNoEsVacio(peso)
+                && validarAltura(Integer.parseInt(altura)) && validarPeso(Integer.parseInt(peso))) {
                 retorno = true;
-            }
         }
         return retorno;
     }
@@ -518,8 +524,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void limpiarFormInicSec() {
-        boxRolInicSec.setSelectedItem("Seleccione...");
-        boxNombreInicSec.setSelectedItem("Seleccione...");
+        boxRolInicSec.setSelectedItem(SELECCIONE);
+        boxNombreInicSec.setSelectedItem(SELECCIONE);
         boxNombreInicSec.setEnabled(false);
         lbRolError.setVisible(false);
         lbNombreInicSecError.setVisible(false);
@@ -564,7 +570,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void limpiarFormUsuario() {
-        lbRegistroUsuario.setText("Registrar Usuario");
+        lbRegistroUsuario.setText(REGISTRARUSUARIO);
 
         lbCheckNombreErrorUsuario.setVisible(false);
         lbCheckApellidoErrorUsuario.setVisible(false);
@@ -589,24 +595,19 @@ public class GUI extends javax.swing.JFrame {
         checkboxPrefLacteos.setSelected(false);
         checkboxPrefFrutas.setSelected(false);
         checkboxPrefVerduras.setSelected(false);
-        // checkboxPrefOtros.setSelected(false);
-
         jListPreferencias.removeAll();
         String[] listaAux = new String[0];
         jListPreferencias.setListData(listaAux);
         jListPreferencias.removeAll();
         txtOtra.setText("");
-        jLayPreferencias.setVisible(false);
-                
+        jLayPreferencias.setVisible(false);               
         checkboxResSalado.setSelected(false);
         checkboxResDulce.setSelected(false);
         checkboxResLacteos.setSelected(false);
         checkboxResCarnesRojas.setSelected(false);
         checkboxResOtros.setSelected(false);
-
-        boxNacionalidadUsuario.setSelectedItem("Seleccione...");
-
-        lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar.png")));
+        boxNacionalidadUsuario.setSelectedItem(SELECCIONE);
+        lbAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource(PATHIMAGENAVATAR)));
 
         dcNacimientoUsuario.setDate(null);
 
@@ -639,8 +640,8 @@ public class GUI extends javax.swing.JFrame {
         txtApellidoProf.setText("");
         txtTitulo.setText("");
 
-        boxPaisTitProf.setSelectedItem("Seleccione...");
-        lbAvatarProf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/avatar.png")));
+        boxPaisTitProf.setSelectedItem(SELECCIONE);
+        lbAvatarProf.setIcon(new javax.swing.ImageIcon(getClass().getResource(PATHIMAGENAVATAR)));
 
         dcNacimientoProf.setDate(null);
         dcGraduacionProf.setDate(null);
@@ -705,7 +706,7 @@ public class GUI extends javax.swing.JFrame {
         lbCheckProfBienConsProfUsuario.setVisible(false);
         lbDescripcionError.setVisible(false);
 
-        boxNombreProfesional.setSelectedItem("Seleccione...");
+        boxNombreProfesional.setSelectedItem(SELECCIONE);
         rbtnGrupConsultaProfMotivo.clearSelection();
         txtDescripcionConsultaProf.setText("");
 
@@ -713,7 +714,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void limpiarFormRegistroAlimentoConsumidoUsuario() {
-        boxAlimentoConsumidoUsuario.setSelectedItem("Seleccione...");
+        boxAlimentoConsumidoUsuario.setSelectedItem(SELECCIONE);
         dcAlimentoConsumidoUsuario.setDate(null);
 
         lbCheckBoxNombreAlimentoConsumidoErrorUsuario.setVisible(false);
@@ -725,7 +726,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void limpiarFormSolicitud() {
-        boxNombreProfesionalSolicitud.setSelectedItem("Seleccione...");
+        boxNombreProfesionalSolicitud.setSelectedItem(SELECCIONE);
         txtPesoSolicitud.setText("");
         txtAlturaSolicitud.setText("");
         txtHorasDeActividadSolicitud.setText("");
@@ -752,10 +753,10 @@ public class GUI extends javax.swing.JFrame {
         limpiarVentanaProfesional();
 
         CardLayout clContenido = (CardLayout) panelContenido.getLayout();
-        clContenido.show(panelContenido, "panelInicio");
+        clContenido.show(panelContenido, PANELINICIO);
 
         CardLayout clBotones = (CardLayout) panelLateral.getLayout();
-        clBotones.show(panelLateral, "panelBotonesInicio");
+        clBotones.show(panelLateral, PANELBOTONSINICIO);
 
         this.usuario = null;
         this.profesional = null;
@@ -774,14 +775,14 @@ public class GUI extends javax.swing.JFrame {
             tipo = "Legumbre";
         }
         if (rBtnOtros.isSelected()) {
-            tipo = "Otros";
+            tipo = OTROS;
         }
 
         return tipo;
     }
 
     public int[] obtenerNutrientesPrincipales() {
-        int retorno[] = new int[5];
+        int[] retorno = new int[5];
 
         if (checkBoxNutProteinas.isSelected()) {
             retorno[0] = Integer.parseInt(txtProporcionProteinas.getText());
@@ -3691,7 +3692,6 @@ public class GUI extends javax.swing.JFrame {
             try (ObjectOutputStream ss = new ObjectOutputStream(bb)) {
                 Sistema sist = sistema;
                 ss.writeObject(sist);
-                // ss.flush();
                 ss.close();
             } catch (IOException e) {
             }
@@ -3737,7 +3737,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void lbLogoPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbLogoPrincipalMouseClicked
         CardLayout cl = (CardLayout) panelContenido.getLayout();
-        cl.show(panelContenido, "panelInicio");
+        cl.show(panelContenido, PANELINICIO);
 
         limpiarVentanaPricipal();
     }//GEN-LAST:event_lbLogoPrincipalMouseClicked
@@ -3795,10 +3795,8 @@ public class GUI extends javax.swing.JFrame {
         String apellidos;
         String nacionalidad;
         String descripcion;
-        Icon avatar;
-        
-        // boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        Icon avatar;        
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
         Date nacimiento;
 
@@ -3810,33 +3808,12 @@ public class GUI extends javax.swing.JFrame {
             nacimiento = dcNacimientoUsuario.getDate();
             descripcion = txtDescripcionUsuario.getText();
             avatar = lbAvatar.getIcon();
-
-            //Preferencias
-            /*
-            if (checkboxPrefCarnes.isSelected()) {
-                preferencias[0] = true;
-            }
-            if (checkboxPrefLacteos.isSelected()) {
-                preferencias[1] = true;
-            }
-            if (checkboxPrefFrutas.isSelected()) {
-                preferencias[2] = true;
-            }
-            if (checkboxPrefVerduras.isSelected()) {
-                preferencias[3] = true;
-            }
-            if (checkboxPrefOtros.isSelected()) {
-                preferencias[4] = true;
-            }
-            */
             for (int i = 0; i < jListPreferencias.getModel().getSize(); i++) {
                 String nombrePreferencia = String.valueOf(jListPreferencias.getModel().getElementAt(i));
                 Preferencia nueva = new Preferencia();
                 nueva.setNombre(nombrePreferencia);
                 listaPreferencias.add(nueva);
-            }
-            
-            //Restricciones
+            }     
             if (checkboxResSalado.isSelected()) {
                 restricciones[0] = true;
             }
@@ -3855,9 +3832,7 @@ public class GUI extends javax.swing.JFrame {
 
             Icon icono = lbAvatar.getIcon();
             lbAvatarInicSecUsuario.setIcon(profesional.getAvatar());
-            // boolean registroExitoso = sistema.registrarUsuario(nombre, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion, icono);
             boolean registroExitoso = sistema.registrarUsuario(nombre, apellidos, nacionalidad, listaPreferencias, restricciones, nacimiento, descripcion, icono);
-            
             if (registroExitoso) {
                 lbCheckRegistroUsuarioExitoso.setVisible(true);
                 pBYaEstoyReg.setVisible(true);
@@ -3874,7 +3849,7 @@ public class GUI extends javax.swing.JFrame {
 
             String nombre = txtNombreAlimentos.getText();
             String tipo = obtenerTipoAlimento();
-            int nutrientesPrincipales[] = obtenerNutrientesPrincipales();
+            int[] nutrientesPrincipales = obtenerNutrientesPrincipales();
 
             sistema.registrarAlimento(nombre, tipo, nutrientesPrincipales);
             limpiarFormAlimento();
@@ -3882,16 +3857,16 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void pBRegAlimentosIngeridosUsuarioMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBRegAlimentosIngeridosUsuarioMouseDragged
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_pBRegAlimentosIngeridosUsuarioMouseDragged
 
     private void pBRegAlimentosIngeridosUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pBRegAlimentosIngeridosUsuarioFocusGained
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_pBRegAlimentosIngeridosUsuarioFocusGained
 
     public void cargarBoxAlimentosIngeridosUsuario() {
         boxAlimentoConsumidoUsuario.removeAllItems();
-        boxAlimentoConsumidoUsuario.addItem("Seleccione...");
+        boxAlimentoConsumidoUsuario.addItem(SELECCIONE);
         for (int i = 0; i < sistema.getListaAlimentos().size(); i++) {
             boxAlimentoConsumidoUsuario.addItem(sistema.getListaAlimentos().get(i) + "");
         }
@@ -3919,20 +3894,20 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pBRegAlimentosIngeridosUsuarioMouseClicked
 
     private void pBRegAlimentosIngeridosUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBRegAlimentosIngeridosUsuarioMousePressed
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_pBRegAlimentosIngeridosUsuarioMousePressed
 
     private void pBRegPlanAlimentacionUsuarioMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBRegPlanAlimentacionUsuarioMouseDragged
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_pBRegPlanAlimentacionUsuarioMouseDragged
 
     private void pBRegPlanAlimentacionUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pBRegPlanAlimentacionUsuarioFocusGained
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_pBRegPlanAlimentacionUsuarioFocusGained
 
     public void cargarBoxProfesionalesSolicitudDePlan() {
         boxNombreProfesionalSolicitud.removeAllItems();
-        boxNombreProfesionalSolicitud.addItem("Seleccione...");
+        boxNombreProfesionalSolicitud.addItem(SELECCIONE);
         for (int i = 0; i < sistema.getListaProfesionales().size(); i++) {
             boxNombreProfesionalSolicitud.addItem(sistema.getListaProfesionales().get(i) + "");
         }
@@ -3962,7 +3937,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_pBRegConsultaProfUsuarioFocusGained
 
     public void cargarTablaTodasLasConsultasDeUnUsuario(JTable tablaCargar) {
-        ArrayList<ParProfesionalConsulta> todasLasConsultas = sistema.todasConsultasDeUnUsuario(usuario + "");
+        List<ParProfesionalConsulta> todasLasConsultas = sistema.todasConsultasDeUnUsuario(usuario + "");
         int largoListaConsultas;
 
         try {
@@ -3971,7 +3946,7 @@ public class GUI extends javax.swing.JFrame {
             largoListaConsultas = 0;
         }
 
-        String matrizDatos[][] = new String[largoListaConsultas][3];
+        String[][] matrizDatos = new String[largoListaConsultas][3];
 
         for (int i = 0; i < largoListaConsultas; i++) {
 
@@ -4097,7 +4072,7 @@ public class GUI extends javax.swing.JFrame {
 
         boolean esValido = false;
 
-        if (!profesional.equals("Seleccione...")) {
+        if (!profesional.equals(SELECCIONE)) {
             lbCheckProfErrorConsProfUsuario.setVisible(false);
             esValido = true;
         } else {
@@ -4217,7 +4192,7 @@ public class GUI extends javax.swing.JFrame {
         limpiarFormInicSec();
 
         boxNombreInicSec.removeAllItems();
-        boxNombreInicSec.addItem("Seleccione...");
+        boxNombreInicSec.addItem(SELECCIONE);
         // boxNombreInicSec.setEnabled(true);
         for (int i = 0; i < sistema.getListaProfesionales().size(); i++) {
             boxNombreInicSec.addItem(sistema.getListaProfesionales().get(i) + "");
@@ -4233,7 +4208,7 @@ public class GUI extends javax.swing.JFrame {
         lbAvatarInicSecUsuario.setIcon(usuario.getAvatar());
 
         int largoListaAlimentos = usuario.getAlimentosIngeridos().size();
-        String matrizDatos[][] = new String[largoListaAlimentos][2];
+        String[][] matrizDatos = new String[largoListaAlimentos][2];
 
         for (int i = 0; i < largoListaAlimentos; i++) {
             matrizDatos[i][0] = usuario.getAlimentosIngeridos().get(i).getAlimentoIngeridoUsuario() + "";
@@ -4243,7 +4218,7 @@ public class GUI extends javax.swing.JFrame {
         tablaAlimentosIngeridosUsuarioInicio.setModel(new javax.swing.table.DefaultTableModel(
                 matrizDatos,
                 new String[]{
-                    "Alimentos", "Fecha"
+                    ALIMENTOS, FECHA
                 }
         ) {
 
@@ -4281,13 +4256,13 @@ public class GUI extends javax.swing.JFrame {
     private void btnInicSecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicSecActionPerformed
         String opcion = (String) boxRolInicSec.getSelectedItem();
 
-        if (opcion.equals("Usuario")) {
+        if (opcion.equals(USSUARIO)) {
 
             lbRolError.setVisible(false);
 
             String nombre = (String) boxNombreInicSec.getSelectedItem();
 
-            if (!nombre.equals("Seleccione...")) {
+            if (!nombre.equals(SELECCIONE)) {
                 lbNombreInicSecError.setVisible(false);
                 usuario = sistema.obtenerUsuario(nombre);
 
@@ -4306,13 +4281,13 @@ public class GUI extends javax.swing.JFrame {
             }
         }
 
-        if (opcion.equals("Profesional")) {
+        if (opcion.equals(PROFESSIONAL)) {
 
             lbRolError.setVisible(false);
 
             String nombre = (String) boxNombreInicSec.getSelectedItem();
 
-            if (!nombre.equals("Seleccione...")) {
+            if (!nombre.equals(SELECCIONE)) {
                 lbNombreInicSecError.setVisible(false);
                 profesional = sistema.obtenerProfesional(nombre);
 
@@ -4331,32 +4306,32 @@ public class GUI extends javax.swing.JFrame {
             }
         }
 
-        if (opcion.equals("Seleccione...")) {
+        if (opcion.equals(SELECCIONE)) {
             lbRolError.setVisible(true);
         }
 
     }//GEN-LAST:event_btnInicSecActionPerformed
 
     private void boxRolInicSecItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_boxRolInicSecItemStateChanged
-        if (boxRolInicSec.getSelectedItem().equals("Seleccione...")) {
+        if (boxRolInicSec.getSelectedItem().equals(SELECCIONE)) {
             boxNombreInicSec.removeAllItems();
-            boxNombreInicSec.addItem("Seleccione...");
+            boxNombreInicSec.addItem(SELECCIONE);
             boxNombreInicSec.setEnabled(false);
             lbNombreInicSecError.setVisible(false);
         }
 
-        if (boxRolInicSec.getSelectedItem().equals("Profesional")) {
+        if (boxRolInicSec.getSelectedItem().equals(PROFESSIONAL)) {
             boxNombreInicSec.removeAllItems();
-            boxNombreInicSec.addItem("Seleccione...");
+            boxNombreInicSec.addItem(SELECCIONE);
             boxNombreInicSec.setEnabled(true);
             for (int i = 0; i < sistema.getListaProfesionales().size(); i++) {
                 boxNombreInicSec.addItem(sistema.getListaProfesionales().get(i) + "");
             }
         }
 
-        if (boxRolInicSec.getSelectedItem().equals("Usuario")) {
+        if (boxRolInicSec.getSelectedItem().equals(USSUARIO)) {
             boxNombreInicSec.removeAllItems();
-            boxNombreInicSec.addItem("Seleccione...");
+            boxNombreInicSec.addItem(SELECCIONE);
             boxNombreInicSec.setEnabled(true);
             for (int i = 0; i < sistema.getListaUsuarios().size(); i++) {
                 boxNombreInicSec.addItem(sistema.getListaUsuarios().get(i) + "");
@@ -4442,7 +4417,7 @@ public class GUI extends javax.swing.JFrame {
         txtDescripcionUsuario.setText(usuario.getDescripcion());
 
         //Preferencias
-         ArrayList<Preferencia> listaPreferencias = usuario.getListaPreferencias();  
+        List<Preferencia> listaPreferencias = usuario.getListaPreferencias();  
         String[] listaAux = new String[listaPreferencias.size()];
         for(int i = 0; i < listaPreferencias.size() ; i++){
             listaAux[i] = listaPreferencias.get(i).getNombre();
@@ -4542,7 +4517,7 @@ public class GUI extends javax.swing.JFrame {
             largoListaConsultas = 0;
         }
 
-        String matrizDatos[][] = new String[largoListaConsultas][3];
+        String[][] matrizDatos = new String[largoListaConsultas][3];
 
         for (int i = 0; i < largoListaConsultas; i++) {
             Consulta consulta = profesional.getListaConsultas().get(i);
@@ -4557,7 +4532,7 @@ public class GUI extends javax.swing.JFrame {
         tabla.setModel(new javax.swing.table.DefaultTableModel(
                 matrizDatos,
                 new String[]{
-                    "Usuario", "Fecha", "Estado"
+                    "Usuario", FECHA, "Estado"
                 }
         ) {
             boolean[] canEdit = new boolean[]{
@@ -4616,7 +4591,7 @@ public class GUI extends javax.swing.JFrame {
             largoListaPlanesProfesional = 0;
         }
 
-        String matrizDatos[][] = new String[largoListaPlanesProfesional][8];
+        String[][] matrizDatos = new String[largoListaPlanesProfesional][8];
 
         for (int i = 0; i < largoListaPlanesProfesional; i++) {
             PlanAlimentacion pAlimentacion = profesional.getListaSolicitudesDePlanes().get(i);
@@ -4646,7 +4621,7 @@ public class GUI extends javax.swing.JFrame {
 
     public void cargarBoxDiasSemana() {
         boxDiasSemanaPlanAliProf.removeAllItems();
-        boxDiasSemanaPlanAliProf.addItem("Seleccione...");
+        boxDiasSemanaPlanAliProf.addItem(SELECCIONE);
         for (int i = 0; i < diasSemana.length; i++) {
             boxDiasSemanaPlanAliProf.addItem(diasSemana[i]);
         }
@@ -4654,7 +4629,7 @@ public class GUI extends javax.swing.JFrame {
 
     public void cargarBoxPlanAlimentacion() {
         boxComidaPlanAliProf.removeAllItems();
-        boxComidaPlanAliProf.addItem("Seleccione...");
+        boxComidaPlanAliProf.addItem(SELECCIONE);
         for (int i = 0; i < comidas.length; i++) {
             boxComidaPlanAliProf.addItem(comidas[i]);
         }
@@ -4742,7 +4717,7 @@ public class GUI extends javax.swing.JFrame {
     private void btnAgregarAlimentoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarAlimentoUsuarioActionPerformed
         String alimento = (String) boxAlimentoConsumidoUsuario.getSelectedItem();
 
-        if (!alimento.equals("Seleccione...")) {
+        if (!alimento.equals(SELECCIONE)) {
             lbCheckBoxNombreAlimentoConsumidoBienUsuario.setVisible(true);
             lbCheckBoxNombreAlimentoConsumidoErrorUsuario.setVisible(false);
         } else {
@@ -4758,7 +4733,7 @@ public class GUI extends javax.swing.JFrame {
             lbCheckBoxFechaAlimentoConsumidoErrorUsuario.setVisible(false);
         }
 
-        if (validarChooserFechaNoEsVacio(dcAlimentoConsumidoUsuario) && !alimento.equals("Seleccione...")) {
+        if (validarChooserFechaNoEsVacio(dcAlimentoConsumidoUsuario) && !alimento.equals(SELECCIONE)) {
 
             Date fechaDeConsumoAlimento = dcAlimentoConsumidoUsuario.getDate();
             sistema.agregarAlimentoUsuario(usuario, alimento, fechaDeConsumoAlimento);
@@ -4897,48 +4872,21 @@ public class GUI extends javax.swing.JFrame {
         String apellidos;
         String nacionalidad;
         String descripcion;
-
-        // boolean[] preferencias = new boolean[5];
-        ArrayList<Preferencia> listaPreferencias = new ArrayList<Preferencia>();
+        List<Preferencia> listaPreferencias = new ArrayList<>();
         boolean[] restricciones = new boolean[5];
         Date nacimiento;
-
         if (validarFormUsuario()) {
-
             nombre = txtNombre.getText();
             apellidos = txtApellido.getText();
             nacionalidad = boxNacionalidadUsuario.getSelectedItem() + "";
             nacimiento = dcNacimientoUsuario.getDate();
-            descripcion = txtDescripcionUsuario.getText();
-
-            //Preferencias
-            /*
-            if (checkboxPrefCarnes.isSelected()) {
-                preferencias[0] = true;
-            }
-            if (checkboxPrefLacteos.isSelected()) {
-                preferencias[1] = true;
-            }
-            if (checkboxPrefFrutas.isSelected()) {
-                preferencias[2] = true;
-            }
-            if (checkboxPrefVerduras.isSelected()) {
-                preferencias[3] = true;
-            }
-            */
-            /*
-            if (checkboxPrefOtros.isSelected()) {
-                preferencias[4] = true;
-            }
-            */
+            descripcion = txtDescripcionUsuario.getText();            
             for (int i = 0; i < jListPreferencias.getModel().getSize(); i++) {
                 String nombrePreferencia = String.valueOf(jListPreferencias.getModel().getElementAt(i));
                 Preferencia nueva = new Preferencia();
                 nueva.setNombre(nombrePreferencia);
                 listaPreferencias.add(nueva);
-            }
-                        
-            //Restricciones
+            }        
             if (checkboxResSalado.isSelected()) {
                 restricciones[0] = true;
             }
@@ -4954,18 +4902,15 @@ public class GUI extends javax.swing.JFrame {
             if (checkboxResOtros.isSelected()) {
                 restricciones[4] = true;
             }
-
             usuario.setNombres(nombre);
             usuario.setApellidos(apellidos);
             usuario.setNacionalidad(nacionalidad);
             usuario.setNacimiento(nacimiento);
-            usuario.setDescripcion(descripcion);
-            // usuario.setPreferencias(preferencias);
+            usuario.setDescripcion(descripcion);            
             usuario.setListaPreferencias(listaPreferencias);
             usuario.setRestricciones(restricciones);
             usuario.setAvatar(lbAvatar.getIcon());
             lbAvatarInicSecUsuario.setIcon(lbAvatar.getIcon());
-
             limpiarFormUsuario();
             cargarDatosUsuario();
         }
@@ -4973,14 +4918,12 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnEditarProfesionalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProfesionalActionPerformed
         if (validarFormProfesional()) {
-
             String nombres = txtNombreProf.getText();
             String apellidos = txtApellidoProf.getText();
             String titulo = txtTitulo.getText();
             String paisObtencionTitulo = boxPaisTitProf.getSelectedItem() + "";
             Date fechaNacimiento = dcNacimientoProf.getDate();
             Date fechaGraduacion = dcGraduacionProf.getDate();
-
             profesional.setNombres(nombres);
             profesional.setApellidos(apellidos);
             profesional.setTitulo(titulo);
@@ -4989,7 +4932,6 @@ public class GUI extends javax.swing.JFrame {
             profesional.setGraduacion(fechaGraduacion);
             profesional.setAvatar(lbAvatarProf.getIcon());
             lbAvatarInicSecProfesional.setIcon(lbAvatar.getIcon());
-
             limpiarFormProfesional();
             cargarDatosProfesional();
         }
@@ -5012,7 +4954,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_tablaConsultasRecibidasMouseClicked
 
     private void tablaConsultasUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaConsultasUsuarioMouseClicked
-        ArrayList<ParProfesionalConsulta> todasLasConsultas = sistema.todasConsultasDeUnUsuario(usuario + "");
+        List<ParProfesionalConsulta> todasLasConsultas = sistema.todasConsultasDeUnUsuario(usuario + "");
         int fila = tablaConsultasUsuario.getSelectedRow();
         txtPreguntaUsuarioConsultaUsuario.setText(todasLasConsultas.get(fila).getConsulta().getDescripcion());
         txtRespuestaUsuarioConsultaUsuario.setText(todasLasConsultas.get(fila).getConsulta().getRespuesta());
@@ -5214,8 +5156,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void limpiarFormPlanAlimentacion() {
-        boxDiasSemanaPlanAliProf.setSelectedItem("Seleccione...");
-        boxComidaPlanAliProf.setSelectedItem("Seleccione...");
+        boxDiasSemanaPlanAliProf.setSelectedItem(SELECCIONE);
+        boxComidaPlanAliProf.setSelectedItem(SELECCIONE);
         txtNombreAlimentoPlanAliProf.setText("");
 
         lbCheckProfBienAgrDiaPlanAli.setVisible(false);
@@ -5253,7 +5195,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnAniadirActionPerformed
 
-    public void cargarFila(String matriz[][], int fila, int posProfesional) {
+    public void cargarFila(String[][] matriz, int fila, int posProfesional) {
         if (fila == 0) {
             for (int i = 1; i < 8; i++) {
                 matriz[fila][i] = profesional.getListaSolicitudesDePlanes().get(posProfesional).getDesayuno()[i];
@@ -5278,17 +5220,14 @@ public class GUI extends javax.swing.JFrame {
 
     public void mostrarTablaPlanAlimentacion(int posProfesional) {
 
-        String matrizDatos[][] = new String[4][8];
-
+        String[][] matrizDatos = new String[4][8];
         for (int fila = 0; fila < 4; fila++) {
             cargarFila(matrizDatos, fila, posProfesional);
         }
-
         matrizDatos[0][0] = "Desayuno";
         matrizDatos[1][0] = "Almuerzo";
         matrizDatos[2][0] = "Merienda";
         matrizDatos[3][0] = "Cena";
-
         tablaIdearPlanDePlanesProfesional.setModel(new javax.swing.table.DefaultTableModel(
                 matrizDatos,
                 new String[]{
@@ -5306,13 +5245,12 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_boxComidaPlanAliProfActionPerformed
 
     private void boxDiasSemanaPlanAliProfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxDiasSemanaPlanAliProfActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_boxDiasSemanaPlanAliProfActionPerformed
 
     private void pBVolverInicioUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBVolverInicioUsuarioMouseClicked
         CardLayout panelContenidoUsuario = (CardLayout) panelContenido.getLayout();
         panelContenidoUsuario.show(panelContenido, "panelInicioUsuario");
-
         cargarVentanaPrincipalUsuario();
     }//GEN-LAST:event_pBVolverInicioUsuarioMouseClicked
 
@@ -5361,7 +5299,6 @@ public class GUI extends javax.swing.JFrame {
             try (ObjectOutputStream ss = new ObjectOutputStream(bb)) {
                 Sistema sist = sistema;
                 ss.writeObject(sist);
-                // ss.flush();
                 ss.close();
             } catch (IOException e) {
             }
@@ -5371,17 +5308,14 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void checkboxPrefVerdurasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefVerdurasActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_checkboxPrefVerdurasActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         char c = evt.getKeyChar();
-
         if (Character.isDigit(c)) {
             getToolkit().beep();
-
             evt.consume();
-
         }
     }//GEN-LAST:event_txtNombreKeyTyped
 
@@ -5390,13 +5324,13 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void checkboxPrefLacteosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkboxPrefLacteosActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_checkboxPrefLacteosActionPerformed
 
     private void btnQuitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarActionPerformed
         int j = jListPreferencias.getSelectedIndex();
         if (j >= 0){
-            ArrayList<String> lista = new ArrayList<String>();
+            List<String> lista = new ArrayList<>();
             int largo = jListPreferencias.getModel().getSize();
             for (int i = 0; i < largo; i++) {
                 lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));
@@ -5413,13 +5347,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQuitarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        ArrayList<String> lista = new ArrayList<String>();
+        List<String> lista = new ArrayList<>();
         int largo = jListPreferencias.getModel().getSize();
         for (int i = 0; i < largo; i++) {
             lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));
-        }
-
-        //Preferencias
+        }        
         if (checkboxPrefCarnes.isSelected()) {
             if (!lista.contains("Carnes")) {
                 lista.add("Carnes");
@@ -5481,7 +5413,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txtOtraActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        ArrayList<String> lista = new ArrayList<String>();
+        List<String> lista = new ArrayList<>();
         int largo = jListPreferencias.getModel().getSize();
         for (int i = 0; i < largo; i++) {
             lista.add(String.valueOf(jListPreferencias.getModel().getElementAt(i)));

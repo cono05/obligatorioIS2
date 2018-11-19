@@ -17,7 +17,6 @@ public class PreferenciaTest {
     @Before
     public void setUp() {
         unaPreferencia = new Preferencia();
-        listaPreferencias = new ArrayList<Preferencia>();
     }
 
     @Test

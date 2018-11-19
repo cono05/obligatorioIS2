@@ -8,15 +8,15 @@ import javax.swing.Icon;
 public class Sistema extends Observable implements Serializable {
 
     
-    private ArrayList<Usuario> listaUsuarios = new ArrayList<Usuario>();
-    private ArrayList<Profesional> listaProfesionales = new ArrayList<Profesional>();
-    private ArrayList<Alimento> listaAlimentos = new ArrayList<Alimento>();
+    private List<Usuario> listaUsuarios = new ArrayList<>();
+    private List<Profesional> listaProfesionales = new ArrayList<>();
+    private List<Alimento> listaAlimentos = new ArrayList<>();
 
     public List<Usuario> getListaUsuarios() {
         return listaUsuarios;
     }
 
-    public void setListaUsuarios(ArrayList<Usuario> listaUsuarios) {
+    public void setListaUsuarios(List<Usuario> listaUsuarios) {
         this.listaUsuarios = listaUsuarios;
     }
 
@@ -24,7 +24,7 @@ public class Sistema extends Observable implements Serializable {
         return listaProfesionales;
     }
 
-    public void setListaProfesionales(ArrayList<Profesional> listaProfesionales) {
+    public void setListaProfesionales(List<Profesional> listaProfesionales) {
         this.listaProfesionales = listaProfesionales;
     }
 
@@ -32,7 +32,7 @@ public class Sistema extends Observable implements Serializable {
         return listaAlimentos;
     }
 
-    public void setListaAlimentos(ArrayList<Alimento> listaAlimentos) {
+    public void setListaAlimentos(List<Alimento> listaAlimentos) {
         this.listaAlimentos = listaAlimentos;
     }
 
@@ -40,8 +40,8 @@ public class Sistema extends Observable implements Serializable {
         this.getListaUsuarios().add(usuario);
     }
 
-    // public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, boolean[] preferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
-    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, ArrayList<Preferencia> listaPreferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
+    
+    public boolean registrarUsuario(String nombre, String apellido, String nacionalidad, List<Preferencia> listaPreferencias, boolean[] restricciones, Date nacimiento, String descripcion, Icon icono) {
 
         boolean existeApellido = false;
         boolean usuarioRegistrado = false;
@@ -65,7 +65,6 @@ public class Sistema extends Observable implements Serializable {
 
             usuario.setNombres(nombre);
             usuario.setApellidos(apellido);
-            // usuario.setPreferencias(preferencias);
             usuario.setListaPreferencias(listaPreferencias);
             usuario.setNacionalidad(nacionalidad);
             usuario.setRestricciones(restricciones);
@@ -239,9 +238,9 @@ public class Sistema extends Observable implements Serializable {
         return matrizDelPlan;
     }
 
-    public ArrayList<ParProfesionalConsulta> todasConsultasDeUnUsuario(String nombreApellidoUsuarioBuscado) {
+    public List<ParProfesionalConsulta> todasConsultasDeUnUsuario(String nombreApellidoUsuarioBuscado) {
 
-        ArrayList<ParProfesionalConsulta> retorno = new ArrayList<ParProfesionalConsulta>();
+        List<ParProfesionalConsulta> retorno = new ArrayList<>();
 
         for (int i = 0; i < this.getListaProfesionales().size(); i++) {
             for (int j = 0; j < this.getListaProfesionales().get(i).getListaConsultas().size(); j++) {
@@ -297,21 +296,13 @@ public class Sistema extends Observable implements Serializable {
         }
     }
 
-    //FUNCIONES PARA VALIDAR CAMPOS
+    
     public boolean validarCampoTxtNoEsVacio(String campo) {
-       // boolean esCampoValido = false;
-       
-        if (campo.trim().length() == 0) {
-            //esCampoValido = false;
-            return false;
-        }else
-            return true;
-       // return false;//esCampoValido;
+        return campo.trim().length() != 0;
     }
 
     public boolean validarStringSinNumero(String s) {
         boolean esCampoValido = true;
-
         for (int i = 0; i < s.length(); i++) {
             if (Character.isDigit(s.charAt(i))) {
                 esCampoValido = false;
@@ -322,18 +313,13 @@ public class Sistema extends Observable implements Serializable {
 
     public boolean validarFecha(Date fechaValidar, int mayorIgualDe) {
         boolean esMayor = false;
-
         Date fechaActual = new Date();
-
         Calendar calFechaActual = Calendar.getInstance();
-
         calFechaActual.setTime(fechaActual);
         int anioFechaActual = calFechaActual.get(Calendar.YEAR);
-
         Calendar calValidar = Calendar.getInstance();
         calValidar.setTime(fechaValidar);
         int anioValidar = calValidar.get(Calendar.YEAR);
-
         if (anioFechaActual - anioValidar >= mayorIgualDe) {
             esMayor = true;
         }
@@ -389,9 +375,7 @@ public class Sistema extends Observable implements Serializable {
     }
     
     public boolean existenUsuariosRegistrados(){
-        boolean retorno = !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();
-        return retorno;
-    }
-    
-//    public validarDatosIMC()
+        return !this.listaUsuarios.isEmpty() || !this.listaProfesionales.isEmpty();
+    }  
+
 }

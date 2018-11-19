@@ -2,5 +2,5 @@ projectKey=ObligatorioIS2Key
 serverUrl=http://localhost:9000
 serverVersion=6.7.5.38563
 dashboardUrl=http://localhost:9000/dashboard/index/ObligatorioIS2Key
-ceTaskId=AWcrzkviqlmBw68H8SWp
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AWcrzkviqlmBw68H8SWp
+ceTaskId=AWcsVniXqlmBw68H8SWz
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AWcsVniXqlmBw68H8SWz

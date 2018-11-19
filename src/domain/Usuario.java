@@ -12,12 +12,12 @@ public class Usuario extends Persona implements Serializable {
     private String descripcion;
     //carnes lacteos frutas verduras otros
     private boolean[] preferencias = new boolean[5];
-    private ArrayList<Preferencia> listaPreferencias;
+    private List<Preferencia> listaPreferencias;
     //salado dulce lacteos carnes rojas otros
     private boolean[] restricciones = new boolean[5];
-    private ArrayList<AlimentoIngerido> alimentosIngeridos;
+    private List<AlimentoIngerido> alimentosIngeridos;
     private PlanAlimentacion planDeAlimentacion;
-    private ArrayList<EstadoSanitario> historialEstadoSanitario;
+    private List<EstadoSanitario> historialEstadoSanitario;
     
     public Usuario(){
         this.historialEstadoSanitario = new ArrayList<>();
@@ -53,11 +53,11 @@ public class Usuario extends Persona implements Serializable {
         this.preferencias = preferencias;
     }
 
-    public ArrayList<Preferencia> getListaPreferencias() {
+    public List<Preferencia> getListaPreferencias() {
         return listaPreferencias;
     }
 
-    public void setListaPreferencias(ArrayList<Preferencia> listaPreferencias) {
+    public void setListaPreferencias(List<Preferencia> listaPreferencias) {
         this.listaPreferencias = listaPreferencias;
     }
     
@@ -73,7 +73,7 @@ public class Usuario extends Persona implements Serializable {
         return alimentosIngeridos;
     }
 
-    public void setAlimentosIngeridos(ArrayList<AlimentoIngerido> alimentosIngeridos) {
+    public void setAlimentosIngeridos(List<AlimentoIngerido> alimentosIngeridos) {
         this.alimentosIngeridos = alimentosIngeridos;
     }
 

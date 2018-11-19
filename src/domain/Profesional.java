@@ -11,8 +11,8 @@ public class Profesional extends Persona implements Serializable {
     private String titulo;
     private String paisObtencionTitulo;
     private Date graduacion;
-    private ArrayList<Consulta> listaConsultas = new ArrayList<>();
-    private ArrayList<PlanAlimentacion> listaSolicitudesDePlanes = new ArrayList<>();
+    private List<Consulta> listaConsultas = new ArrayList<>();
+    private List<PlanAlimentacion> listaSolicitudesDePlanes = new ArrayList<>();
     
     public Icon getAvatar() {
         return avatar;
@@ -50,7 +50,7 @@ public class Profesional extends Persona implements Serializable {
         return listaConsultas;
     }
 
-    public void setListaConsultas(ArrayList<Consulta> listaConsultas) {
+    public void setListaConsultas(List<Consulta> listaConsultas) {
         this.listaConsultas = listaConsultas;
     }
 
@@ -58,7 +58,7 @@ public class Profesional extends Persona implements Serializable {
         return listaSolicitudesDePlanes;
     }
 
-    public void setListaSolicitudesDePlanes(ArrayList<PlanAlimentacion> listaSolicitudesDePlanes) {
+    public void setListaSolicitudesDePlanes(List<PlanAlimentacion> listaSolicitudesDePlanes) {
         this.listaSolicitudesDePlanes = listaSolicitudesDePlanes;
     }
 

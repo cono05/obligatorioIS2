@@ -21,18 +21,10 @@ public class PersonaTest {
 
     @Test
     public void testRegistrarUsuarioNombreVacio() {
-        int tamanoInicial = unSistema.getListaUsuarios().size();
+        int tamanoInicial = 0;
         int resultadoEsperado = tamanoInicial;
-        String nombres = "Pepe";
-        String apellidos = "Rodríguez";
-        Date nacimiento = new Date();
-        //unSistema.r
-
-        //unSistema.registrarUsuario(nombres, apellidos, nacionalidad, preferencias, restricciones, nacimiento, descripcion);
         int resutladoObtenido = unSistema.getListaUsuarios().size();
-
         assertEquals(resultadoEsperado, resutladoObtenido);
-
     }
 
     @Test
