@@ -2957,7 +2957,7 @@ public class GUI extends javax.swing.JFrame {
                 txtBoxIMCActionPerformed(evt);
             }
         });
-        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 290, 60, 30));
+        PSolicitarPlanAlimentacionUsuario.add(txtBoxIMC, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 60, 30));
 
         jLabelRegistroIMC.setForeground(new java.awt.Color(255, 0, 0));
         jLabelRegistroIMC.setText("<html>*Su peso, altura e IMC <br> han sido registrados en su historial</html>");
