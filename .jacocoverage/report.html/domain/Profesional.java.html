@@ -11,8 +11,8 @@ import javax.swing.Icon;
     private String titulo;
     private String paisObtencionTitulo;
     private Date graduacion;
-<span class="fc" id="L14">    private ArrayList&lt;Consulta&gt; listaConsultas = new ArrayList&lt;Consulta&gt;();</span>
-<span class="fc" id="L15">    private ArrayList&lt;PlanAlimentacion&gt; listaSolicitudesDePlanes = new ArrayList&lt;PlanAlimentacion&gt;();</span>
+<span class="fc" id="L14">    private List&lt;Consulta&gt; listaConsultas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L15">    private List&lt;PlanAlimentacion&gt; listaSolicitudesDePlanes = new ArrayList&lt;&gt;();</span>
     
     public Icon getAvatar() {
 <span class="fc" id="L18">        return avatar;</span>
@@ -46,19 +46,19 @@ import javax.swing.Icon;
 <span class="fc" id="L46">        this.graduacion = graduacion;</span>
 <span class="fc" id="L47">    }</span>
 
-    public ArrayList&lt;Consulta&gt; getListaConsultas() {
+    public List&lt;Consulta&gt; getListaConsultas() {
 <span class="fc" id="L50">        return listaConsultas;</span>
     }
 
-    public void setListaConsultas(ArrayList&lt;Consulta&gt; listaConsultas) {
+    public void setListaConsultas(List&lt;Consulta&gt; listaConsultas) {
 <span class="fc" id="L54">        this.listaConsultas = listaConsultas;</span>
 <span class="fc" id="L55">    }</span>
 
-    public ArrayList&lt;PlanAlimentacion&gt; getListaSolicitudesDePlanes() {
+    public List&lt;PlanAlimentacion&gt; getListaSolicitudesDePlanes() {
 <span class="fc" id="L58">        return listaSolicitudesDePlanes;</span>
     }
 
-    public void setListaSolicitudesDePlanes(ArrayList&lt;PlanAlimentacion&gt; listaSolicitudesDePlanes) {
+    public void setListaSolicitudesDePlanes(List&lt;PlanAlimentacion&gt; listaSolicitudesDePlanes) {
 <span class="fc" id="L62">        this.listaSolicitudesDePlanes = listaSolicitudesDePlanes;</span>
 <span class="fc" id="L63">    }</span>
 

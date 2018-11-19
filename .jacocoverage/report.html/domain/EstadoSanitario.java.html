@@ -7,7 +7,6 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  *
@@ -19,33 +18,33 @@ public class EstadoSanitario implements Serializable {
     private double imc;
     private Calendar fecha;
     
-<span class="fc" id="L22">    public EstadoSanitario(double peso, double altura, double imc, Calendar fecha){</span>
-<span class="fc" id="L23">        this.peso = peso;</span>
-<span class="fc" id="L24">        this.altura = altura;</span>
-<span class="fc" id="L25">        this.imc = imc;</span>
-<span class="fc" id="L26">        this.fecha = fecha;</span>
-<span class="fc" id="L27">    }</span>
+<span class="fc" id="L21">    public EstadoSanitario(double peso, double altura, double imc, Calendar fecha){</span>
+<span class="fc" id="L22">        this.peso = peso;</span>
+<span class="fc" id="L23">        this.altura = altura;</span>
+<span class="fc" id="L24">        this.imc = imc;</span>
+<span class="fc" id="L25">        this.fecha = fecha;</span>
+<span class="fc" id="L26">    }</span>
     
     public double getPeso(){
-<span class="fc" id="L30">        return this.peso;</span>
+<span class="fc" id="L29">        return this.peso;</span>
     }
     
     public double getAltura(){
-<span class="fc" id="L34">        return this.altura;</span>
+<span class="fc" id="L33">        return this.altura;</span>
     }
     
     public double getIMC(){
-<span class="fc" id="L38">        return this.imc;</span>
+<span class="fc" id="L37">        return this.imc;</span>
     }
     
     public Calendar getFecha(){
-<span class="fc" id="L42">        return this.fecha;</span>
+<span class="fc" id="L41">        return this.fecha;</span>
     }
     
     @Override
     public String toString() {
-<span class="fc" id="L47">        return this.fecha.get(Calendar.DAY_OF_MONTH) + &quot;/&quot; + this.fecha.get(Calendar.MONTH)</span>
-<span class="fc" id="L48">                + &quot;/&quot; + this.fecha.get(Calendar.YEAR) + &quot;: Altura: &quot; + this.altura + </span>
+<span class="fc" id="L46">        return this.fecha.get(Calendar.DAY_OF_MONTH) + &quot;/&quot; + this.fecha.get(Calendar.MONTH)</span>
+<span class="fc" id="L47">                + &quot;/&quot; + this.fecha.get(Calendar.YEAR) + &quot;: Altura: &quot; + this.altura + </span>
                 &quot; Peso: &quot; +this.peso +&quot; IMC: &quot; + this.imc;
     }
     

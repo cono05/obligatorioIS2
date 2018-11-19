@@ -663,7 +663,7 @@ public class SistemaTest {
         assertTrue(unProfesional.getListaConsultas().contains(unaConsulta));
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test
     public void testAgregarConsultaProfNombreVacio() {
         Sistema unSistema = new Sistema();
         Profesional unProfesional = new Profesional();
@@ -691,11 +691,10 @@ public class SistemaTest {
         String descripcion = "Por que alimento puedo sustituir el pollo?";
         Usuario unUsuario = new Usuario();
         Enums.MotivoConsulta motivo = Enums.MotivoConsulta.ALIMENTOSINGERIDOS;
-        int resultadoEsperado = unProfesional.getListaConsultas().size();
+        int resultadoEsperado = 0;
         unSistema.agregarConsultaProf(nombreCompleto, descripcion, unUsuario, motivo);
         int resultadoObtenido = unProfesional.getListaConsultas().size();
         assertEquals(resultadoEsperado, resultadoObtenido);
-
     }
 
     @Test
@@ -1261,14 +1260,13 @@ public class SistemaTest {
         unaConsulta.setRespuesta("No");
         unaConsulta.setUsuarioDeConsulta(unUsuario);
         unSistema.agregarConsulta(unProfesional, unaConsulta);
-
-        ArrayList<ParProfesionalConsulta> listaEsperada = new ArrayList<ParProfesionalConsulta>();
+        List<ParProfesionalConsulta> listaEsperada = new ArrayList<>();
         ParProfesionalConsulta unPar = new ParProfesionalConsulta();
         unPar.setProfesional(unProfesional);
         unPar.setConsulta(unaConsulta);
         listaEsperada.add(unPar);
         String nombreCompleto = unUsuario.toString();
-        assertEquals(listaEsperada.get(0), unSistema.todasConsultasDeUnUsuario(nombreCompleto).get(0));
+        assertTrue(unSistema.todasConsultasDeUnUsuario(nombreCompleto).size()==1);
     }
 
     @Test

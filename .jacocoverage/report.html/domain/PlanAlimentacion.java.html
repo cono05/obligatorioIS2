@@ -11,11 +11,11 @@ import java.io.Serializable;
     private int horasDeActividad;
     private String detalle;
     private boolean estado;// true corresponde a emitido, false a pendiente
-<span class="fc" id="L14">    private String alimentosDiaSemana[][] = new String[6][7];</span>
-<span class="fc" id="L15">    private String desayuno[] = new String[8];</span>
-<span class="fc" id="L16">    private String almuerzo[] = new String[8];</span>
-<span class="fc" id="L17">    private String merienda[] = new String[8];</span>
-<span class="fc" id="L18">    private String cena[] = new String[8];</span>
+<span class="fc" id="L14">    private String[][] alimentosDiaSemana = new String[6][7];</span>
+<span class="fc" id="L15">    private String[] desayuno = new String[8];</span>
+<span class="fc" id="L16">    private String[] almuerzo = new String[8];</span>
+<span class="fc" id="L17">    private String[] merienda = new String[8];</span>
+<span class="fc" id="L18">    private String[] cena = new String[8];</span>
 
     public Usuario getUsuario() {
 <span class="fc" id="L21">        return usuario;</span>
