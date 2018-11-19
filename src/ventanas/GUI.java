@@ -4282,7 +4282,7 @@ public class GUI extends javax.swing.JFrame {
         txtApellidoProf.setText(profesional.getApellidos());
         dcNacimientoProf.setDate(profesional.getNacimiento());
         txtTitulo.setText(profesional.getTitulo());
-        dcGraduacionProf.setDate(profesional.getNacimiento());
+        dcGraduacionProf.setDate(profesional.getGraduacion());
         boxPaisTitProf.setSelectedItem(profesional.getPaisObtencionTitulo());
 
         btnRegistrarProfesional.setVisible(false);
