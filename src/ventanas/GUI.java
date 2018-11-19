@@ -4714,10 +4714,11 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnBorrarAlimentoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarAlimentoUsuarioActionPerformed
         int fila = tablaAlimentosIngeridosUsuario.getSelectedRow();
-        String filaSeleccionada = (String) tablaAlimentosIngeridosUsuario.getValueAt(fila, 0);
-        sistema.borrarAlimentoUsuario(usuario, filaSeleccionada);
-        limpiarFormRegistroAlimentoConsumidoUsuario();
-
+        if (fila >= 0) {
+            String filaSeleccionada = (String) tablaAlimentosIngeridosUsuario.getValueAt(fila, 0);
+            sistema.borrarAlimentoUsuario(usuario, filaSeleccionada);
+            limpiarFormRegistroAlimentoConsumidoUsuario();
+        }
     }//GEN-LAST:event_btnBorrarAlimentoUsuarioActionPerformed
 
     private void pBConsultasRecibidasProfMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pBConsultasRecibidasProfMouseEntered
